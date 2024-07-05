@@ -126,7 +126,7 @@
             this.lblDialog.BackColor = System.Drawing.Color.Transparent;
             this.lblDialog.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDialog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblDialog.Location = new System.Drawing.Point(62, 421);
+            this.lblDialog.Location = new System.Drawing.Point(62, 483);
             this.lblDialog.Name = "lblDialog";
             this.lblDialog.Size = new System.Drawing.Size(1029, 122);
             this.lblDialog.TabIndex = 7;

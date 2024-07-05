@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace Phantom
 {
@@ -12,6 +13,11 @@ namespace Phantom
         {
 
         };
+
+        public static string[] credits = {
+        "Created by: Marija Ilievska and Nikola Janev\nArt: Marija Ilievska and FreePik: https://www.freepik.com/author/freepik"
+        };
+
 
         public static string[] startDialog =
        {
