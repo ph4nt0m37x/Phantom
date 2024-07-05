@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Phantom
 {
-    public class Scene
+    public class HexagonScene
     {
-
+        public List<Hexagon> Hexagons;
     }
 }

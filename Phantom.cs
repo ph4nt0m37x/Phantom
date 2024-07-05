@@ -95,12 +95,8 @@ namespace Phantom
 
         private void ButtonCredits_Click(object sender, EventArgs e)
         {
-          /*  Label labelCredits = new Label();
-            labelCredits.Location = new Point(300, 500);
-            labelCredits.Text = "Marija Ilievska, Nikola Janev i Gospod"; 
-            labelCredits.ForeColor = Color.LightSeaGreen;
-            this.Controls.Add(labelCredits);
-          */
+            lblCenter.Text = "";
+                dialogueTimer.Start();
         }
 
         private void Phantom_Load(object sender, EventArgs e)
@@ -111,12 +107,14 @@ namespace Phantom
         private void ButtonStart_MouseClick(object sender, MouseEventArgs e)
         {
             ButtonStart.Dispose(); //removing the Buttons
-            ButtonQuit.Dispose();
+           // ButtonQuit.Dispose();
             ButtonCredits.Dispose();
             ButtonOptions.Dispose();
             Valid = true;          //validating mouse clicks on the form
 
+          //  sceneTimer.Start();
 
+            
             dialogueTimer.Start();        
             
             lblDialog.Show();
@@ -199,11 +197,6 @@ namespace Phantom
 
 
             }
-
-
-
-
-
             Invalidate();
 
         }
@@ -217,39 +210,27 @@ namespace Phantom
             if (TransitionTickCount < 20) //timer for fade out
             {
                 Phantom.ActiveForm.Opacity -= 0.05;
-                
             }
 
-            else if (TransitionTickCount == 20) //when the transition scene comes, set wallpaper to black
-                        
+            else if (TransitionTickCount == 20) //when the transition scene comes, set wallpaper to black            
             {
                 lblCenter.Hide();
-                this.BackgroundImage = null;
-                
-
+                this.BackgroundImage = null;             
             }
-            else  if (SceneEnd == 1)//after the transition scene, swap back to the Scene image
+            else  if (SceneEnd == 1)//after the transition, swap back to the next scene's image image
             {
-                
                 this.BackgroundImage = Properties.Resources.mainMenuGrid;
-                //Phantom.Image.FromFile("");
-                SceneEnd = 2;
-               
+                SceneEnd = 2;  
             }
-
-
             if (TransitionTickCount < 40 && TransitionTickCount >= 20) //timer for fade in
             {    
                 Phantom.ActiveForm.Opacity += 0.05;
             }
-
-            else if (TransitionTickCount == 40 && SceneEnd == 2)
+            else if (TransitionTickCount == 40 && SceneEnd == 2) //scene has ended, transition to next scene
             {
                 sceneTimer.Stop();
                 this.Close();
             }
-            
-
              else if (TransitionTickCount == 40) //
             {
                 sceneTimer.Stop();
@@ -258,20 +239,18 @@ namespace Phantom
                 CurrentDialog[0] = "BioSynth Innovation Hub, Neo Solaris, 01:00h, 7th July 2077";
                 DialogCount = 0;
                 lblCenter.Show();
-                dialogueTimer.Start();
-                
+                dialogueTimer.Start();                
             }
             else if (TransitionTickCount == 300)
             {
                 SceneEnd = 1;
                 TransitionTickCount = 0;
-
             }
+        }
 
-
-
-
-
+        private void lblDialog_MouseClick(object sender, MouseEventArgs e)
+        {
+            Phantom_MouseClick(sender, e);
         }
 
         //Mission Assignment 
