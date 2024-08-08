@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
+using static System.TimeZoneInfo;
 
 
 namespace Phantom
@@ -16,16 +17,107 @@ namespace Phantom
     {
 
         public int ValidClick;
-        public Scene Scene { get; set; }
-
+        public Scene MainScene;
+        public Scene Credits;
+        public Scene Transition;
         public Phantom()
         {
             InitializeComponent();
             DoubleBuffered = true;
+
+            ValidClick = 0; // whether the form/label click should do anything
+
+            MainScene = new Scene(Dialogue.Dialogues[0], lblMenu);
+            Credits = new Scene(Dialogue.Credits, lblDialog);
+            Transition = new Scene(Dialogue.TransitionLines[0], lblCenter);
+
+            menuTimer.Start();
+
+        }
+
+        private void menuTimer_Tick(object sender, EventArgs e)
+        {
+
+            MainScene.DisplayDialogue(MainScene.CurrentDialog[0], menuTimer);
+
+        }
+
+
+        private void dialogueTimer_Tick(object sender, EventArgs e)
+        {
+            if (ValidClick == 1) //if the click is valid
+            {
+                MainScene.DisplayDialogue(MainScene.CurrentDialog[MainScene.LineIndex], dialogueTimer);
+            }
+            else if (ValidClick == 3) //credits gets a special call in order to work at the same time as main dialog
+            {
+                Credits.DisplayDialogue(Credits.CurrentDialog[Credits.LineIndex], dialogueTimer);
+            }
+        }
+
+        private void ButtonStart_MouseClick(object sender, MouseEventArgs e)
+        {
+            ButtonStart.Dispose(); //removing the Buttons
+            ButtonCredits.Dispose();
+            ButtonOptions.Dispose();
+
+            ValidClick = 1;  //validating mouse clicks on the form
+
+            lblMenu.Hide();
             lblDialog.Hide();
-            Scene = new Scene();
-            Scene.CurrentDialog = Dialogue.startDialog;
-            ValidClick = 0;
+
+            MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.SceneNumber];
+            MainScene.LineIndex = 0;
+
+            transitionTimer.Start();
+
+           // dialogueTimer.Start(); // starting the dialogue scene
+        }
+
+
+        //Transition Scenes
+        private void sceneTimer_Tick(object sender, EventArgs e)
+        {
+            Transition.TickIndex++; //count the ticks for transition scene
+
+            if (Transition.TickIndex < 20) //timer for fade out
+            {
+                Phantom.ActiveForm.Opacity -= 0.05;
+            }
+
+            else if (Transition.TickIndex == 20) //when the transition scene comes, set wallpaper to black            
+            {
+                lblCenter.Hide();
+                this.BackgroundImage = null;
+            }
+            else if (Transition.TransitionSceneProgress == 1)//after the transition, swap back to the next scene's image image
+            {
+                this.BackgroundImage = Properties.Resources.mainMenuGrid;
+                Transition.TransitionSceneProgress = 2;
+            }
+            else if (Transition.TickIndex < 40 && Transition.TickIndex >= 20) //timer for fade in
+            {
+                Phantom.ActiveForm.Opacity += 0.05;
+            }
+            else if (Transition.TickIndex == 40 && MainScene.TransitionSceneProgress == 2) //scene has ended, transition to next scene
+            {
+                transitionTimer.Stop();
+                this.Close();
+            }
+            else if (Transition.TickIndex == 40) //
+            {
+                // sceneTimer.Stop();
+                MainScene.LineIndex = 0;
+                ValidClick = 2;
+                MainScene.LineIndex = 0;
+                lblCenter.Show();
+                dialogueTimer.Start();
+            }
+            else if (Transition.TickIndex == 300)
+            {
+                MainScene.TransitionSceneProgress = 1;
+                Transition.TickIndex = 0;
+            }
         }
 
         //Menu Screen
@@ -53,7 +145,7 @@ namespace Phantom
 
         private void ButtonQuit_MouseEnter(object sender, EventArgs e)
         {
-            ButtonQuit.ForeColor = Color.LightSeaGreen;             
+            ButtonQuit.ForeColor = Color.LightSeaGreen;
         }
 
 
@@ -80,152 +172,41 @@ namespace Phantom
         private void ButtonCredits_Click(object sender, EventArgs e)
         {
 
-            if (ValidClick== 2)
+            if (ValidClick == 3)
             {
                 ValidClick = 0;
-                lblCenter.Text = "";
+                lblDialog.Text = "";
             }
             else
             {
-                ValidClick = 2;
-                lblCenter.Show();
-                Scene.CurrentLine = 0;
-                Scene.CurrentDialog = Dialogue.credits;
+                ValidClick = 3;
+                lblDialog.Show();
+                Credits.LineIndex = 0;
+                Credits.CurrentDialog = Dialogue.Credits;
                 dialogueTimer.Start();
             }
 
-            
-            Scene.LetterPerTick = 0;
-           
-        }
 
-        private void Phantom_Load(object sender, EventArgs e)
-        {
+            Credits.TickIndex = 0;
 
         }
 
-        private void ButtonStart_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-            ButtonStart.Dispose(); //removing the Buttons
-            ButtonCredits.Dispose();
-            ButtonOptions.Dispose();
-            ValidClick = 1;          //validating mouse clicks on the form
-            lblCenter.Hide(); //hiding credits if clicked
-            //setting dialogue
-            Scene.CurrentDialog = null;
-            Scene.CurrentDialog = Dialogue.startDialog;
-            //  sceneTimer.Start();
-            Scene.LetterPerTick = 0;
-            Scene.CurrentLine = 0;
 
 
-
-            dialogueTimer.Start();        
-            lblDialog.Show();
-        }
-
-        private void DisplayDialogue(string s, Label label) //displays dialogue letter by letter 
-        {
-            string nextChar = Scene.NextCharacter(s);
-
-            if (nextChar == "")
-                dialogueTimer.Stop();    
-
-            else
-                label.Text += nextChar;
-
-        }
-     
-        private void dialogueTimer_Tick(object sender, EventArgs e)
-        {   
-            if (ValidClick == 1)
-            {
-                DisplayDialogue(Scene.CurrentDialog[Scene.CurrentLine], lblDialog);
-            }
-            else if (ValidClick == 2)
-            {
-                DisplayDialogue(Scene.CurrentDialog[Scene.CurrentLine], lblCenter);
-               // sceneTimer.Start();
-              // ValidClick = 0;
-
-            }
-            else
-            { 
-             //   sceneTimer.Start();
-            }
-
-            Scene.LetterPerTick++;
-
-        }
+        // Form + Label Mouse Click
 
         private void Phantom_MouseClick(object sender, MouseEventArgs e)
         {
             lblDialog_MouseClick(sender, e);
             Invalidate();
-
-        }
-
-        //Transition scene
-
-        private void sceneTimer_Tick(object sender, EventArgs e)
-        {
-
-            Scene.TransitionTicks++; //count the ticks for transition scene
-
-            if (Scene.TransitionTicks < 20) //timer for fade out
-            {
-                Phantom.ActiveForm.Opacity -= 0.05;
-            }
-
-            else if (Scene.TransitionTicks == 20) //when the transition scene comes, set wallpaper to black            
-            {
-                lblCenter.Hide();
-                this.BackgroundImage = null;             
-            }
-            else  if (Scene.TransitionSceneProgress == 1)//after the transition, swap back to the next scene's image image
-            {
-                this.BackgroundImage = Properties.Resources.mainMenuGrid;
-                Scene.TransitionSceneProgress = 2;  
-            }
-            else if (Scene.TransitionTicks < 40 && Scene.TransitionTicks >= 20) //timer for fade in
-            {    
-                Phantom.ActiveForm.Opacity += 0.05;
-            }
-            else if (Scene.TransitionTicks == 40 && Scene.TransitionSceneProgress == 2) //scene has ended, transition to next scene
-            {
-                sceneTimer.Stop();
-                this.Close();
-            }
-             else if (Scene.TransitionTicks == 40) //
-            {
-               // sceneTimer.Stop();
-                Scene.CurrentLine = 0;
-                ValidClick = 2;
-
-                Scene.CurrentDialog = new string[1];
-                Scene.CurrentDialog[0] = "BioSynth Innovation Hub, Neo Solaris, 01:00h, 7th July 2077";
-                Scene.CurrentLine = 0;
-                lblCenter.Show();
-                dialogueTimer.Start();                
-            }
-            else if (Scene.TransitionTicks == 300)
-            {
-                Scene.TransitionSceneProgress = 1;
-                Scene.TransitionTicks = 0;
-            }
         }
 
         private void lblDialog_MouseClick(object sender, MouseEventArgs e)
         {
-            
-            Scene.LetterPerTick = 0;
-            
-
             if (ValidClick == 1) //if mouse click is valid
             {
-
-                if (Scene.CurrentLine < Scene.CurrentDialog.Length) //check if theres still lines in the current dialogue scene
+                //  Scene.LetterPerTickIndex = 0;
+                if (MainScene.LineIndex < MainScene.CurrentDialog.Length) //check if theres still lines in the current dialogue scene
                 {
                     if (!dialogueTimer.Enabled) //if the dialogue timer is done , start it again for the next line
                     {
@@ -235,8 +216,9 @@ namespace Phantom
                     else //if timer still going and form is clicked, immediately write dialogue
                     {
                         dialogueTimer.Stop();
-                        lblDialog.Text = Scene.CurrentDialog[Scene.CurrentLine];
-                        Scene.CurrentLine++; //go next line after finishing
+                        lblDialog.Text = MainScene.CurrentDialog[MainScene.LineIndex];
+                        MainScene.LineIndex++; //go next line after finishing
+                        MainScene.TickIndex = 0;
                     }
                 }
                 else //when dialog scene is finished - hide dialog box (we reuse it a lot, best not to delete)
@@ -244,29 +226,19 @@ namespace Phantom
                     lblDialog.Text = "";
                     lblDialog.Hide();
                     ValidClick = 0;
-                    sceneTimer.Start();
-                    Scene.LetterPerTick = 0;
+                    transitionTimer.Start();
+                    MainScene.TickIndex = 0;
+                    MainScene.LineIndex = 0;
                 }
             }
+            if (ValidClick == 2)
+            {
+                MainScene.TickIndex = 0;
+            }
+
+
             Invalidate();
         }
-
-        //Mission Assignment 
-
-
-
-
-
-
-
-        //Arriving at the Destination
-
-        //
-
-
-
-        //Implement Scene 
-
 
     }
 }
