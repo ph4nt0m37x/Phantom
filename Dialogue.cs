@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Windows.Forms.VisualStyles;
 
 namespace Phantom
@@ -9,19 +10,14 @@ namespace Phantom
 
         public static List<String[]> Dialogues = new List<string[]>
         {
-            new string[] // 0 - menu
-            {
-                "r0gu3: Nothing stays hidden forever. Not from us, anyway. We need intel. You need money. Will you accept the mission?"
 
-            },
-
-            new string[] //1 - starting dialogue
+            new string[] // 0 - starting dialogue
             {
-            "r0gu3: BioSynth Nexus is on the brink of a breakthrough with their latest cybernetic implant.",
+            "r0gu3: NeuroSync is on the brink of a breakthrough with their latest cybernetic implant.",
             "r0gu3: Rumor has it, it's game changing.",
             "r0gu3: I only need the blueprints to recreate it.",
             "r0gu3: Problem is their developmental facilities are heavily guarded.",
-            "r0gu3: However, they have a weak spot: the BioSynth Innovation Hub — low interest, low security.",
+            "r0gu3: However, they have a weak spot: the NeuroSync Innovation Hub — low interest, low security.",
             "r0gu3: My contact has informed me they’ve stashed a copy at a safe location.",
             "r0gu3: I need someone who can slip in and out unnoticed. That's where you come in.",
             "r0gu3: No trace.",
@@ -37,7 +33,7 @@ namespace Phantom
             "r0gu3: Punctuality is paramount — failure is not an option."
             },
 
-            new string[] //2 - outside the hub dialogue / pre cipher dialogue
+            new string[] //1 - outside the hub dialogue / pre cipher dialogue
             {
             "Nix: Status update?",
             "Specter: All clear. No signs of activity.",
@@ -49,26 +45,41 @@ namespace Phantom
             "Nix: No pressure.",
             "Specter: You don’t have much time. Do it, now."
             },
-            new string[] //3 - post cipher dialogue 
+            new string[] //2 - post cipher dialogue 
             {
             "Nix: I’m in. Where do I proceed?",
             "Specter: Nicely done.",
-            "Specter: The blueprints should be stashed in the room on your right.",
+            "Specter: The blueprints should be stashed in the server room on your right.",
             "Specter: Cameras are scattered throughout.",
             "Specter: Thanks to our contact, they've been moved ever so slightly, allowing you to pass if you stick close to the wall." ,
             "Nix: Hold up, stashed? Where?",
-            "Specter: Go in quickly before a guard comes."            },
-            new string[] //4 - pre encryption
+            "Specter: Go in quickly before a guard comes."            
+            },
+
+            new string[] //3 - server room
             {
-                "Nix: What now?",
-                "Specter: The blueprints should be on the terminal in front of you.",
+                "Nix: Specter there's someone's blood in here--",
+                "Specter: - The blueprints can be accessed from the terminal in front of you.",
+                "Nix: Did you not hear me?",
+                "Specter: None of our concern.",
+                "Specter: We need those blueprints, or our contact's efforts would have been for nothing.",
                 "Specter: The data will be encrypted. The key is the word 'something' written using the polyalphabetic cipher given.",
                 "Specter: No time frame on this. Just make sure you don't fail more than 3 times.",
                 "Specter: If you do, the alarm will trigger and guards will storm you."
-            },
-            new string [] // 5 - post encryption
-            {
 
+            },
+            new string [] // 4 - post-encryption dialogue
+            {
+                ""
+            },
+            new string[] // 5 - expose
+            {
+                ""
+            },
+
+             new string[] // 6 - be selfish (live) :(
+            {
+                ""
             },
 
             new string[] // last, fail (case default)
@@ -87,16 +98,19 @@ namespace Phantom
         {
             new string[]
             {
-                " "
+                "",
+
             },
             new string[]
             {
-                "BioSynth Innovation Hub, Neo Solaris, 01:00h, 7th July 2077"
-            }
+                "NeuroSync Innovation Hub, Neo Solaris, 01:00h, 7th July 2077"
+            },
 
+            new string[] 
+            {
+                ""
+            },
         };
-
-
 
         public static string[] Credits =
         {
@@ -107,10 +121,10 @@ namespace Phantom
 
         };
 
-
-
-
-
-
+        public static string[] Menu =
+        {
+            "r0gu3: Nothing stays hidden forever. Not from us, anyway. We need intel. You need money. Will you accept the mission?"
+    };
+            
     }
 }

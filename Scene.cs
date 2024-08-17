@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using static System.TimeZoneInfo;
+
 
 namespace Phantom
 {
@@ -17,30 +18,26 @@ namespace Phantom
         public int LineIndex { get; set; }
         public int TickIndex { get; set; }
 
-        public int TransitionSceneProgress { get; set; }
+        public int DialogCounter { get; set; }
 
         public int SceneNumber { get; set; }
 
-        public System.Windows.Forms.Label CurrentLabel { get; set; }
+        public Label CurrentLabel { get; set; }
 
-        public Scene(string[] current, System.Windows.Forms.Label lbl)
+        public Timer T { get; set; }
+        public Scene(string[] current, Label lbl, Timer t)
         {
             CurrentDialog = current;
             CurrentLabel = lbl;
+            DialogCounter = 0;
             TickIndex = 0;
             LineIndex = 0;
-            TransitionSceneProgress = 0;
+            T = t;
             SceneNumber = 0;
-
-
-            // 6 dialogue scenes, 8 transitions, 1 cipher game, 1 encryption game, 1 decision scene 
-
-            //  Timer.Interval = 3;
 
         }
 
-
-        public void DisplayDialogue(string s, Timer t)
+        public void DisplayLine(string s)
         {
             CurrentLabel.Show();
 
@@ -53,23 +50,49 @@ namespace Phantom
             {
                 TickIndex = 0; //reset character position for next string
                 LineIndex++; //go to next line in the script
-                t.Stop(); //stop the timer for the current string
+                T.Stop(); //stop the timer for the current string
             }
         }
 
-        public void Fade()
+        public bool DisplayDialog(string s)
         {
+            CurrentDialog = Dialogue.Dialogues[DialogCounter];
 
+            if (LineIndex < CurrentDialog.Length) //check if theres still lines in the current dialogue scene
+            {
+                if (!T.Enabled) //if the dialogue timer is done , start it again for the next line
+                {
+                    CurrentLabel.Text = "";
+                    T.Start();
+                }
+                else //if timer still going and form is clicked, immediately write dialogue
+                {
+                    T.Stop();
+                    CurrentLabel.Text = CurrentDialog[LineIndex];
+                    LineIndex++; //go next line after finishing
+                    TickIndex = 0; // reset character position for next string
+                }
+                return false;
+            }
+            else //when dialog scene is finished - reset dialog box (we reuse it a lot, best not to delete)
+            {
+                CurrentLabel.Text = "";
+                TickIndex = 0;
+                LineIndex = 0;
+                DialogCounter++;
+                return true;
+            }
         }
 
-        public void Decrypt(string updated, string old, Timer t)
+
+        public void Decrypt(string decrypted, string encrypted, Timer t)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(old); //we put the old string in the sb so we can change exact positions of the letters
+            sb.Append(encrypted); //we put the old string in the sb so we can change exact positions of the letters
 
-            if (TickIndex < old.Length)
+            if (TickIndex < encrypted.Length)
             {
-                char c = updated.ToCharArray()[TickIndex];
+                char c = decrypted.ToCharArray()[TickIndex];
                 sb[TickIndex] = c;
 
                 CurrentLabel.Text = sb.ToString(); //replace the letter in the old string with the one in the new
@@ -81,10 +104,6 @@ namespace Phantom
                 LineIndex++; // go next line if it exists
                 t.Stop(); // stop timer cause string is done
             }
-
         }
-
-
     }
-
 }

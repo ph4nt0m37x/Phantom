@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Phantom));
             this.ButtonOptions = new System.Windows.Forms.Button();
             this.ButtonCredits = new System.Windows.Forms.Button();
             this.ButtonQuit = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             this.progressBarTimer = new System.Windows.Forms.Timer(this.components);
             this.lblMenu = new System.Windows.Forms.Label();
             this.menuTimer = new System.Windows.Forms.Timer(this.components);
+            this.creditsTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ButtonOptions
@@ -133,7 +135,6 @@
             this.lblDialog.Name = "lblDialog";
             this.lblDialog.Size = new System.Drawing.Size(1029, 122);
             this.lblDialog.TabIndex = 7;
-            this.lblDialog.Visible = false;
             this.lblDialog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDialog_MouseClick);
             // 
             // dialogueTimer
@@ -167,7 +168,7 @@
             this.lblMenu.BackColor = System.Drawing.Color.Transparent;
             this.lblMenu.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblMenu.Location = new System.Drawing.Point(291, 76);
+            this.lblMenu.Location = new System.Drawing.Point(289, 83);
             this.lblMenu.Name = "lblMenu";
             this.lblMenu.Size = new System.Drawing.Size(607, 122);
             this.lblMenu.TabIndex = 9;
@@ -178,12 +179,17 @@
             this.menuTimer.Interval = 30;
             this.menuTimer.Tick += new System.EventHandler(this.menuTimer_Tick);
             // 
+            // creditsTimer
+            // 
+            this.creditsTimer.Interval = 30;
+            this.creditsTimer.Tick += new System.EventHandler(this.creditsTimer_Tick);
+            // 
             // Phantom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.BackgroundImage = global::Phantom.Properties.Resources.mainMenuGrid;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1152, 648);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.lblCenter);
@@ -214,6 +220,7 @@
         private System.Windows.Forms.Timer progressBarTimer;
         private System.Windows.Forms.Label lblMenu;
         private System.Windows.Forms.Timer menuTimer;
+        private System.Windows.Forms.Timer creditsTimer;
     }
 }
 
