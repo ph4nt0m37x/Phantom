@@ -38,7 +38,6 @@
             this.dialogueTimer = new System.Windows.Forms.Timer(this.components);
             this.transitionTimer = new System.Windows.Forms.Timer(this.components);
             this.lblCenter = new System.Windows.Forms.Label();
-            this.progressBarTimer = new System.Windows.Forms.Timer(this.components);
             this.lblMenu = new System.Windows.Forms.Label();
             this.menuTimer = new System.Windows.Forms.Timer(this.components);
             this.creditsTimer = new System.Windows.Forms.Timer(this.components);
@@ -159,10 +158,6 @@
             this.lblCenter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblCenter.Visible = false;
             // 
-            // progressBarTimer
-            // 
-            this.progressBarTimer.Interval = 1000;
-            // 
             // lblMenu
             // 
             this.lblMenu.BackColor = System.Drawing.Color.Transparent;
@@ -217,7 +212,6 @@
         private System.Windows.Forms.Timer dialogueTimer;
         private System.Windows.Forms.Timer transitionTimer;
         private System.Windows.Forms.Label lblCenter;
-        private System.Windows.Forms.Timer progressBarTimer;
         private System.Windows.Forms.Label lblMenu;
         private System.Windows.Forms.Timer menuTimer;
         private System.Windows.Forms.Timer creditsTimer;

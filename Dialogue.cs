@@ -70,16 +70,37 @@ namespace Phantom
             },
             new string [] // 4 - post-encryption dialogue
             {
-                ""
+                "Specter: Nix? You there?",
+                "Nix: Specter… They’re experimenting on humans illegally here…",
+                "Nix: Innocent people—they’re lying to them about what’s going to happen—",
+                "Specter: --Nix, we were explicitly instructed to only take the blueprints.",
+                "Nix: So, you want me to just pretend like I saw nothing?",
+                "Specter: Need I remind you of what Rogue said?",
+                "Specter: There’s a time to fight, and a time to walk away. Knowing the difference is what keeps you breathing.",
+                "Specter: I don’t know if you’ve got a death wish, but I don’t.",
+                "Nix: …",
+                "Specter: Nix?",
+                "Specter: Don’t do this, please.",
+                "Not every truth is meant to be uncovered. Some things, you’re better off not knowing.",
+                "But now - the truth is staring you in the face.",
+                "The choice is in your hands."
             },
             new string[] // 5 - expose
             {
-                ""
+                "Nix: I’m sorry, Specter.",
+                "Specter: NIX, DON’T ---",
+                "Nix: I have to prioritize what I believe in.",
+                "Nix: Even if that costs me.",
+                "True change demands sacrifice. The question isn’t whether you can pay the price, but whether you’re willing to."
             },
 
              new string[] // 6 - be selfish (live) :(
             {
-                ""
+                "Nix: I’ve taken the blueprints.",
+                "Specter: Good. We stick to the plan. No heroics.",
+                "Nix: It just.. feels wrong.",
+                "Specter: This is bigger than us.  One data leak will not cost NeuroSync more than a few lawyers.",
+                "In this world, the price of seeing everything is too high. Sometimes, you have to choose to see nothing."
             },
 
             new string[] // last, fail (case default)
@@ -104,13 +125,22 @@ namespace Phantom
             new string[]
             {
                 "NeuroSync Innovation Hub, Neo Solaris, 01:00h, 7th July 2077"
-            },
+            }
 
-            new string[] 
-            {
-                ""
-            },
         };
+
+        public static string[] Decrypted =
+        {
+            "TO WHOEVER FINDS THIS: It means I’m no longer here.\r\n" +
+            "If you’re reading this, you’ve either received the confidential security key from me or taken it by force." +
+            "Regardless of how you got it, you need to read carefully." +
+            "Do not turn a blind eye to what’s happening at NeuroSync. \r\n" +
+            "Throughout my time here, I’ve compiled irrefutable evidence—evidence of illegal human experimentation." +
+            "Hundreds of victims, unaware of their fate, have suffered in the name of \"progress.\"\r\n" +
+            "This data must be released to the public. NeuroSync will not stop—they are relentless, driven by greed and the pursuit of experimental implants that line their investors’ pockets.\r\n" +
+            "I have a family. You understand my position. Do the right thing."
+        };
+
 
         public static string[] Credits =
         {
