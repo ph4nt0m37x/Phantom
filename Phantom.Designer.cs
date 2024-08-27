@@ -45,6 +45,7 @@
             // 
             // ButtonOptions
             // 
+            this.ButtonOptions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonOptions.BackColor = System.Drawing.Color.Black;
             this.ButtonOptions.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonOptions.FlatAppearance.BorderSize = 0;
@@ -53,9 +54,10 @@
             this.ButtonOptions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonOptions.Font = new System.Drawing.Font("Unispace", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonOptions.ForeColor = System.Drawing.SystemColors.Control;
-            this.ButtonOptions.Location = new System.Drawing.Point(12, 601);
+            this.ButtonOptions.Location = new System.Drawing.Point(9, 448);
+            this.ButtonOptions.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonOptions.Name = "ButtonOptions";
-            this.ButtonOptions.Size = new System.Drawing.Size(146, 40);
+            this.ButtonOptions.Size = new System.Drawing.Size(110, 32);
             this.ButtonOptions.TabIndex = 2;
             this.ButtonOptions.Text = "options";
             this.ButtonOptions.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -65,6 +67,7 @@
             // 
             // ButtonCredits
             // 
+            this.ButtonCredits.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ButtonCredits.BackColor = System.Drawing.Color.Black;
             this.ButtonCredits.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.ButtonCredits.FlatAppearance.BorderSize = 0;
@@ -73,9 +76,10 @@
             this.ButtonCredits.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCredits.Font = new System.Drawing.Font("Unispace", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCredits.ForeColor = System.Drawing.SystemColors.Control;
-            this.ButtonCredits.Location = new System.Drawing.Point(518, 601);
+            this.ButtonCredits.Location = new System.Drawing.Point(366, 448);
+            this.ButtonCredits.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonCredits.Name = "ButtonCredits";
-            this.ButtonCredits.Size = new System.Drawing.Size(172, 35);
+            this.ButtonCredits.Size = new System.Drawing.Size(129, 28);
             this.ButtonCredits.TabIndex = 3;
             this.ButtonCredits.Text = "credits";
             this.ButtonCredits.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -86,6 +90,7 @@
             // 
             // ButtonQuit
             // 
+            this.ButtonQuit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonQuit.BackColor = System.Drawing.Color.Transparent;
             this.ButtonQuit.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
             this.ButtonQuit.FlatAppearance.BorderSize = 0;
@@ -94,9 +99,10 @@
             this.ButtonQuit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonQuit.Font = new System.Drawing.Font("Unispace", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonQuit.ForeColor = System.Drawing.SystemColors.Control;
-            this.ButtonQuit.Location = new System.Drawing.Point(1030, 601);
+            this.ButtonQuit.Location = new System.Drawing.Point(772, 448);
+            this.ButtonQuit.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonQuit.Name = "ButtonQuit";
-            this.ButtonQuit.Size = new System.Drawing.Size(110, 40);
+            this.ButtonQuit.Size = new System.Drawing.Size(82, 32);
             this.ButtonQuit.TabIndex = 4;
             this.ButtonQuit.Text = "quit";
             this.ButtonQuit.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -115,9 +121,10 @@
             this.ButtonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStart.Font = new System.Drawing.Font("Unispace", 50F, System.Drawing.FontStyle.Bold);
             this.ButtonStart.ForeColor = System.Drawing.SystemColors.Control;
-            this.ButtonStart.Location = new System.Drawing.Point(391, 314);
+            this.ButtonStart.Location = new System.Drawing.Point(293, 255);
+            this.ButtonStart.Margin = new System.Windows.Forms.Padding(2);
             this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(397, 117);
+            this.ButtonStart.Size = new System.Drawing.Size(298, 95);
             this.ButtonStart.TabIndex = 5;
             this.ButtonStart.Text = "accept";
             this.ButtonStart.UseVisualStyleBackColor = false;
@@ -130,9 +137,10 @@
             this.lblDialog.BackColor = System.Drawing.Color.Transparent;
             this.lblDialog.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDialog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblDialog.Location = new System.Drawing.Point(62, 458);
+            this.lblDialog.Location = new System.Drawing.Point(46, 332);
+            this.lblDialog.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDialog.Name = "lblDialog";
-            this.lblDialog.Size = new System.Drawing.Size(1029, 122);
+            this.lblDialog.Size = new System.Drawing.Size(772, 99);
             this.lblDialog.TabIndex = 7;
             this.lblDialog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDialog_MouseClick);
             // 
@@ -151,9 +159,10 @@
             this.lblCenter.BackColor = System.Drawing.Color.Transparent;
             this.lblCenter.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCenter.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblCenter.Location = new System.Drawing.Point(62, 300);
+            this.lblCenter.Location = new System.Drawing.Point(46, 188);
+            this.lblCenter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCenter.Name = "lblCenter";
-            this.lblCenter.Size = new System.Drawing.Size(1029, 122);
+            this.lblCenter.Size = new System.Drawing.Size(772, 99);
             this.lblCenter.TabIndex = 8;
             this.lblCenter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblCenter.Visible = false;
@@ -163,9 +172,10 @@
             this.lblMenu.BackColor = System.Drawing.Color.Transparent;
             this.lblMenu.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblMenu.Location = new System.Drawing.Point(289, 83);
+            this.lblMenu.Location = new System.Drawing.Point(217, 67);
+            this.lblMenu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(607, 122);
+            this.lblMenu.Size = new System.Drawing.Size(455, 99);
             this.lblMenu.TabIndex = 9;
             this.lblMenu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -181,11 +191,11 @@
             // 
             // Phantom
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1152, 648);
+            this.ClientSize = new System.Drawing.Size(864, 486);
             this.Controls.Add(this.lblMenu);
             this.Controls.Add(this.lblCenter);
             this.Controls.Add(this.lblDialog);
@@ -194,6 +204,7 @@
             this.Controls.Add(this.ButtonCredits);
             this.Controls.Add(this.ButtonOptions);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Phantom";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -217,4 +228,3 @@
         private System.Windows.Forms.Timer creditsTimer;
     }
 }
-

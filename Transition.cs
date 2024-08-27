@@ -30,12 +30,14 @@ namespace Phantom
         public Timer timer;
 
         public int DialogCounter;
+        Keypad keypad;
 
         public Image[] Images =
         {
             
             Properties.Resources.opening,
             Properties.Resources.preCipher,
+            Properties.Resources.keypadTEMP,
             //put cipher photo
             Properties.Resources.postCipher,
             Properties.Resources.serverRoom,
@@ -58,38 +60,40 @@ namespace Phantom
             isDone = false; //whether the transition is done
             currScene = new Scene(Dialogue.TransitionLines[0], label, t);
             textWritten = false;
-            
+
+
+            keypad = new Keypad(timer, "1234");
         }
 
         public bool Fade(bool isDone)
         {
-            this.isDone = isDone;
+                this.isDone = isDone;
 
-            if (sceneCount == 1)
-            {   
-                hasDialog = true;
-                currScene.CurrentDialog = Dialogue.TransitionLines[sceneCount];
-            }
-            else
-            {
-                hasDialog = false;
-            }
-
-
-            if (!isDone)
-            {
-                if(hasDialog)
+                if (sceneCount == 1 )
                 {
-                    DisplayText();
+                    hasDialog = true;
+                    currScene.CurrentDialog = Dialogue.TransitionLines[sceneCount];
                 }
                 else
                 {
-                    FadeToNext();
+                    hasDialog = false;
                 }
-              
-            }
+             
 
-            return this.isDone;
+                if (!isDone)
+                {
+                    if (hasDialog)
+                    {
+                        DisplayText();
+                    }
+                    else
+                    {
+                        FadeToNext();
+                    }
+
+                }
+
+                return this.isDone;
         }
 
         public void FadeToNext()
@@ -103,8 +107,16 @@ namespace Phantom
 
             else if (TickCount == 20) // change background image
             {
-                Phantom.ActiveForm.BackgroundImage = Images[sceneCount];
-                label.Text = "";
+                    if(sceneCount<Images.Length)
+                    {
+                        if (sceneCount == 2)
+                        {
+                            keypad.spawnAllButtons();
+                        }
+                        Phantom.ActiveForm.BackgroundImage = Images[sceneCount];
+                       
+                     }
+                    label.Text = "";
             }
 
             else if (TickCount >= 20 && TickCount < 40) //timer for fade in
@@ -114,24 +126,34 @@ namespace Phantom
 
             if (TickCount == 40)
                 {
+                if(sceneCount == 2)
+                    {
+                    timer.Stop();
+                    }
                 TickCount = 0;
                 isDone = true;
                 textWritten = false;
                 sceneCount++;
                 }
             }
-            
+
         }
 
 
         public void DisplayText()
         {
+            
             if (textWritten)
             {
+                label.Enabled = false;
                 FadeToNext();
             }
             else
             {
+                if (TickCount == 1)
+                {
+                    label.Enabled = true;
+                }
                 if (TickCount < 20) //timer for fade out
                 {
                     Phantom.ActiveForm.Opacity -= 0.05;
@@ -157,13 +179,11 @@ namespace Phantom
                     textWritten = true;
                     TickCount = 0;
                     DialogCounter++;
-                    currScene.CurrentDialog = Dialogue.TransitionLines[DialogCounter];
                 }
             }
-            
+
+
 
         }
-
-
     }
 }

@@ -45,18 +45,22 @@ namespace Phantom
             "Nix: No pressure.",
             "Specter: You don’t have much time. Do it, now."
             },
-            new string[] //2 - post cipher dialogue 
+            new string[] //2 - post cipher dialogue  change: this is now text when the minigame is beaten, rest of the text is moved down to next string
             {
             "Nix: I’m in. Where do I proceed?",
-            "Specter: Nicely done.",
-            "Specter: The blueprints should be stashed in the server room on your right.",
+            "Specter: Nicely done."
+                    
+            },
+            new string[] //3
+            {
+               "Specter: The blueprints should be stashed in the server room on your right.",
             "Specter: Cameras are scattered throughout.",
             "Specter: Thanks to our contact, they've been moved ever so slightly, allowing you to pass if you stick close to the wall." ,
             "Nix: Hold up, stashed? Where?",
-            "Specter: Go in quickly before a guard comes."            
+            "Specter: Go in quickly before a guard comes."
             },
 
-            new string[] //3 - server room
+            new string[] //4 - server room
             {
                 "Nix: Specter there's someone's blood in here--",
                 "Specter: - The blueprints can be accessed from the terminal in front of you.",
@@ -68,7 +72,7 @@ namespace Phantom
                 "Specter: If you do, the alarm will trigger and guards will storm you."
 
             },
-            new string [] // 4 - post-encryption dialogue
+            new string [] // 5 - post-encryption dialogue
             {
                 "Specter: Nix? You there?",
                 "Nix: Specter… They’re experimenting on humans illegally here…",
@@ -85,7 +89,7 @@ namespace Phantom
                 "But now - the truth is staring you in the face.",
                 "The choice is in your hands."
             },
-            new string[] // 5 - expose
+            new string[] // 6 - expose
             {
                 "Nix: I’m sorry, Specter.",
                 "Specter: NIX, DON’T ---",
@@ -94,7 +98,7 @@ namespace Phantom
                 "True change demands sacrifice. The question isn’t whether you can pay the price, but whether you’re willing to."
             },
 
-             new string[] // 6 - be selfish (live) :(
+             new string[] // 7 - be selfish (live) :(
             {
                 "Nix: I’ve taken the blueprints.",
                 "Specter: Good. We stick to the plan. No heroics.",
@@ -103,7 +107,7 @@ namespace Phantom
                 "In this world, the price of seeing everything is too high. Sometimes, you have to choose to see nothing."
             },
 
-            new string[] // last, fail (case default)
+            new string[] //8 last, fail (case default)
             {
             "Nix: --Shit!",
             "Specter: Nix? You there?",
@@ -119,7 +123,7 @@ namespace Phantom
         {
             new string[]
             {
-                "",
+                "test",
 
             },
             new string[]

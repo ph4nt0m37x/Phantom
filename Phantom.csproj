@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Choice.cs" />
     <Compile Include="Dialogue.cs" />
+    <Compile Include="Keypad.cs" />
     <Compile Include="Phantom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,9 +94,6 @@
     <Resource Include="images\opening.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\polyalphabeticCIpher.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\postCipher.png" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\encryptionGame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\keypadTEST.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\keypadTEMP.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
