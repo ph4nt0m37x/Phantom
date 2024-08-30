@@ -63,9 +63,9 @@ namespace Phantom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap encryptionGame {
+        internal static System.Drawing.Bitmap encrypt {
             get {
-                object obj = ResourceManager.GetObject("encryptionGame", resourceCulture);
+                object obj = ResourceManager.GetObject("encrypt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -137,6 +137,24 @@ namespace Phantom.Properties {
             get {
                 object obj = ResourceManager.GetObject("serverRoom", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream stealth_music_background {
+            get {
+                return ResourceManager.GetStream("stealth_music_background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WRONG {
+            get {
+                return ResourceManager.GetStream("WRONG", resourceCulture);
             }
         }
     }

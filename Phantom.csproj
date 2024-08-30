@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Choice.cs" />
     <Compile Include="Dialogue.cs" />
+    <Compile Include="Encryption.cs" />
     <Compile Include="Keypad.cs" />
     <Compile Include="Phantom.cs">
       <SubType>Form</SubType>
@@ -106,13 +107,22 @@
     <Resource Include="images\serverRoom.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\encryptionGame.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\keypadTEST.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\keypadTEMP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stealth-music-background.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WRONG.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\encryption.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\encrypt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

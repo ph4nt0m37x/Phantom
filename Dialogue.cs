@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using System.Windows.Forms.VisualStyles;
 
 namespace Phantom
 {
@@ -45,15 +43,15 @@ namespace Phantom
             "Nix: No pressure.",
             "Specter: You don’t have much time. Do it, now."
             },
-            new string[] //2 - post cipher dialogue  change: this is now text when the minigame is beaten, rest of the text is moved down to next string
+            new string[] //2 - text when the minigame is done
+            {   
+            ""
+            },
+            new string[] //3 - post cipher dialouge
             {
             "Nix: I’m in. Where do I proceed?",
-            "Specter: Nicely done."
-                    
-            },
-            new string[] //3
-            {
-               "Specter: The blueprints should be stashed in the server room on your right.",
+            "Specter: Nicely done.",
+            "Specter: The blueprints should be stashed in the server room on your right.",
             "Specter: Cameras are scattered throughout.",
             "Specter: Thanks to our contact, they've been moved ever so slightly, allowing you to pass if you stick close to the wall." ,
             "Nix: Hold up, stashed? Where?",
@@ -72,7 +70,13 @@ namespace Phantom
                 "Specter: If you do, the alarm will trigger and guards will storm you."
 
             },
-            new string [] // 5 - post-encryption dialogue
+
+            new string[] // 5
+            {
+                ""
+            },
+
+            new string [] // 6 - post-encryption dialogue
             {
                 "Specter: Nix? You there?",
                 "Nix: Specter… They’re experimenting on humans illegally here…",
@@ -89,7 +93,8 @@ namespace Phantom
                 "But now - the truth is staring you in the face.",
                 "The choice is in your hands."
             },
-            new string[] // 6 - expose
+
+            new string[] // 7 - expose
             {
                 "Nix: I’m sorry, Specter.",
                 "Specter: NIX, DON’T ---",
@@ -98,7 +103,7 @@ namespace Phantom
                 "True change demands sacrifice. The question isn’t whether you can pay the price, but whether you’re willing to."
             },
 
-             new string[] // 7 - be selfish (live) :(
+             new string[] // 8 - be selfish (live) :(
             {
                 "Nix: I’ve taken the blueprints.",
                 "Specter: Good. We stick to the plan. No heroics.",
@@ -107,7 +112,7 @@ namespace Phantom
                 "In this world, the price of seeing everything is too high. Sometimes, you have to choose to see nothing."
             },
 
-            new string[] //8 last, fail (case default)
+            new string[] //9 last, fail (case default)
             {
             "Nix: --Shit!",
             "Specter: Nix? You there?",
@@ -128,7 +133,7 @@ namespace Phantom
             },
             new string[]
             {
-                "NeuroSync Innovation Hub, Neo Solaris, 01:00h, 7th July 2077"
+                "NeuroSync Innovation Hub, Neo Solaris, 00:00h, 7th July 2077"
             }
 
         };
@@ -144,6 +149,19 @@ namespace Phantom
             "This data must be released to the public. NeuroSync will not stop—they are relentless, driven by greed and the pursuit of experimental implants that line their investors’ pockets.\r\n" +
             "I have a family. You understand my position. Do the right thing."
         };
+
+        public static string[] Encrypted =
+        {
+            "IF KWFSJSV DEGAU IWEU: Ei hszgu E’h gf rfgqsv wsvs.\r\n" +
+            "Ed mfo’vs vszaegq iweu, mfo’js seiwsv vscsejsa iws cfgdeasgiezr uscoveim tsm dvfh hs fv iztsg ei xm dfvcs." +
+            "Vsqzvarsuu fd wfk mfo qfi ei, mfo gssa if vsza czvsdorrm. " +
+            "Af gfi iovg z xrega sms if kwzi’u wznnsgegq zi GsovfUmgc.\r\n" +
+            "Iwvfoqwfoi hm iehs wsvs, E’js cfhnersa evvsdoizxrs sjeasgcs—sjeasgcs fd errsqzr wohzg slnsvehsgiziefg." +
+            "Wogavsau fd jeciehu, ogzkzvs fd iwsev dzis, wzjs uoddsvsa eg iws gzhs fd \"nvfqvsuu.\"\r\n" +
+            "Iweu aziz houi xs vsrszusa if iws noxrec. GsovfUmgc kerr gfi uifn—iwsm zvs vsrsgirsuu, avejsg xm qvssa zga iws novuoei fd slnsvehsgizr ehnrzgiu iwzi regs iwsev egjsuifvu’ nfctsiu.\r\n" +
+            "E wzjs z dzherm. Mfo ogasvuizga hm nfueiefg. Af iws veqwi iwegq."
+        };
+
 
 
         public static string[] Credits =

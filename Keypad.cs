@@ -1,23 +1,25 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
+
 
 namespace Phantom
 {
     internal class Keypad
     {
         Button[] buttons = new Button[12];
-        Timer  timer = new Timer();
+
+        Timer timer = new Timer();
+
         String answer;
+
         String input = "";
+
         Label screen = new Label();
+
+        int counter = 0;
+
         public string[] buttonText = //text for the buttons
         {
             "1",
@@ -36,18 +38,18 @@ namespace Phantom
 
         public Point[] point = //points where buttons are spawned
         {
-            new Point(39, 42),
-            new Point(125, 42),
-            new Point(211, 42),
-            new Point(39, 128),
-            new Point(125, 128),
-            new Point(211, 128),
-            new Point(39, 214),
-            new Point(125, 214),
-            new Point(211, 214),
-            new Point(39, 300),
-            new Point(125, 300),
-            new Point(211, 300)
+            new Point(89, 102),
+            new Point(175, 102),
+            new Point(261, 102),
+            new Point(89, 188),
+            new Point(175, 188),
+            new Point(261, 188),
+            new Point(89, 274),
+            new Point(175, 274),
+            new Point(261, 274),
+            new Point(89, 360),
+            new Point(175, 360),
+            new Point(261, 360)
         };
         public Keypad(Timer t, String answer) //const (give it the right timer so it can stop the game until the minigame is done)
         {
@@ -65,14 +67,14 @@ namespace Phantom
             button.Show();
             button.Enabled = true;
             button.Size = new System.Drawing.Size(80, 80);
-            button.BackColor = Color.LightSlateGray;
+            button.BackColor = Color.DarkCyan;
             button.ForeColor = Color.White;
-            button.FlatAppearance.BorderColor = Color.LightSteelBlue;
+            button.FlatAppearance.BorderColor = Color.White;
             button.FlatAppearance.MouseOverBackColor = Color.LightSeaGreen;
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderSize = 2;
             button.Click += new EventHandler(Button_Click);
-
+            button.TabStop = true;
             button.Font = new Font("Unispace", 20);
             Phantom.ActiveForm.Controls.Add(button);
             return button;
@@ -86,10 +88,24 @@ namespace Phantom
                 buttons[i].BringToFront();
             }
             screen.Enabled = true;
-            screen.Location = new Point(567, 46);
-            screen.BackColor = Color.LightSteelBlue;
+            screen.Font = new Font("Unispace", 25);
+            screen.Size = new System.Drawing.Size(250, 50);
+            screen.Location = new Point(90, 40);
+            screen.BackColor = Color.DarkCyan;
+            screen.ForeColor = Color.White;
+            screen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             Phantom.ActiveForm.Controls.Add(screen);
         }
+
+        public void DeleteButtons()
+        {
+            foreach (Button b in buttons)
+            {
+                b.Dispose();
+            }
+            screen.Dispose();
+        }
+
         private void Button_Click(object sender, EventArgs e) //event if button is clicked (works for all of the buttons)
         {
             Button button = sender as Button;
@@ -107,16 +123,35 @@ namespace Phantom
                     {
                         if (input == answer) //if correct stop minigame (gets rid of everything and starts the timer again)
                         {
-                            foreach (Button b in buttons)
+                         /*   foreach(Button b in buttons)
                             {
-                                b.Dispose();
-                            }
-                            screen.Dispose();
+                                b.Enabled = false;
+                            }*/
                             timer.Start();
-                        }
-                        else { screen.Text = ""; input = ""; } // failure (not finished)
 
-                    }
+                        }
+                        else
+                        {
+
+                            if (counter < 2)
+                            {
+                                screen.Text = "";
+                                input = "";
+
+                          //     SystemSounds.Beep.Play();
+                                counter++;
+
+                            }
+                            else
+                            {
+                                Transition.sceneCount = 8;
+                                Transition.FAIL = true;
+                                
+                                timer.Start();
+                            }
+                        }
+
+                    } // failure (not finished)
 
                 }
                 else // if not special input add input to input field 
@@ -129,7 +164,6 @@ namespace Phantom
                 }
             }
         }
-
-
     }
 }
+

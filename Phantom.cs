@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
-using static System.TimeZoneInfo;
+using System.Media;
+using System.Windows.Forms; 
 
 
 namespace Phantom
@@ -33,12 +25,20 @@ namespace Phantom
             sceneDone = false;
             validClick = false;
             
-            MenuScene = new Scene(Dialogue.Menu, lblMenu, menuTimer); //
+            MenuScene = new Scene(Dialogue.Menu, lblMenu, genericTimer); //
             MainScene = new Scene(Dialogue.Dialogues[0], lblDialog, dialogueTimer); //set the menu as main scene
             Credits = new Scene(Dialogue.Credits, lblDialog, creditsTimer); //set the credits dialogue
             Transition = new Transition(transitionTimer, lblCenter); //create the transition scene
 
-            menuTimer.Start(); //start the menu timer for the dialog to write out
+
+            SoundPlayer player = new SoundPlayer(Properties.Resources.stealth_music_background);
+            player.PlayLooping(); //mooosic
+            
+
+            genericTimer.Start(); //start the menu timer for the dialog to write out
+
+
+
         }
 
         // Menu timers
@@ -80,9 +80,14 @@ namespace Phantom
             ButtonCredits.Dispose();
             ButtonOptions.Dispose();
 
+            
+
+
+
+
             lblMenu.Dispose(); // remove label 
-            menuTimer.Dispose(); //remove menu timer
-            creditsTimer.Dispose();
+            //genericTimer.Dispose();
+            creditsTimer.Dispose(); // remove credits timer
             lblDialog.Text = "";
             lblDialog.Hide();
 
@@ -95,14 +100,15 @@ namespace Phantom
         private void sceneTimer_Tick(object sender, EventArgs e)
         {
             if (transitionDone)
-            {               
+            {
+
                 sceneDone = false;
                 MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
                 MainScene.LineIndex = 0;
                 transitionTimer.Stop();
                 validClick = true;
                 dialogueTimer.Start();
-                
+
             }
             else
             {
@@ -116,29 +122,36 @@ namespace Phantom
 
         private void Phantom_MouseClick(object sender, MouseEventArgs e)
         {
-            lblDialog_MouseClick(sender, e);
+            OnClick();
             Invalidate();
         }
 
         private void lblDialog_MouseClick(object sender, MouseEventArgs e)
         {
+            OnClick();
+            Invalidate();
+        }
 
+        public void OnClick()
+        {
             if (validClick)
             {
                 sceneDone = MainScene.DisplayDialog(MainScene.CurrentDialog[0]);
-
+                ifDone();
                 if (sceneDone)
                 {
                     transitionDone = false;
-                    validClick = false; 
+                    validClick = false;
                     dialogueTimer.Stop(); //stop the dialogue timer
+
                     transitionTimer.Start(); //start the next transition
 
                 }
-            }
 
-            Invalidate();
+            }
         }
+
+
 
         //Menu Screen Button Colors
 
@@ -196,6 +209,54 @@ namespace Phantom
             creditsTimer.Enabled = !creditsTimer.Enabled;
 
         }
+
+        public void Phantom_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode.Equals(Keys.Space))
+            {
+                OnClick();
+                Invalidate();
+            }
+            
+        }
+
+        public void ifDone()
+        {
+            
+
+            if (sceneDone)
+            {
+                if (MainScene.DialogCounter == 7 || MainScene.DialogCounter == 8 || MainScene.DialogCounter == 9)
+                {
+                    Transition.END_GAME = true;
+                }
+            }
+
+
+            if (Transition.FAIL)
+            {
+                MainScene.DialogCounter = 9;
+            }
+
+            else if (Transition.sceneCount == 7) //if its the choice scene, then the dialogue chosen matters.
+            {
+                if (Choice.expose)
+                {
+                    MainScene.DialogCounter = 7;
+                }
+                else
+                {
+                    MainScene.DialogCounter = 8;
+                }
+            }
+
+            
+
+
+
+        }
+
 
     }
 }

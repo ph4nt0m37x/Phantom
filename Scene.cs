@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
-using static System.TimeZoneInfo;
 
 
 namespace Phantom
@@ -20,11 +12,13 @@ namespace Phantom
 
         public int DialogCounter { get; set; }
 
-        public int SceneNumber { get; set; }
 
         public Label CurrentLabel { get; set; }
 
         public Timer T { get; set; }
+
+        public StringBuilder sb { get; set; }
+
         public Scene(string[] current, Label lbl, Timer t)
         {
             CurrentDialog = current;
@@ -33,7 +27,7 @@ namespace Phantom
             TickIndex = 0;
             LineIndex = 0;
             T = t;
-            SceneNumber = 0;
+            sb = new StringBuilder();
 
         }
 
@@ -85,10 +79,13 @@ namespace Phantom
         }
 
 
-        public void Decrypt(string decrypted, string encrypted, Timer t)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(encrypted); //we put the old string in the sb so we can change exact positions of the letters
+        public bool Decrypt(string decrypted, string encrypted)
+        { 
+            if (TickIndex == 0)
+            {
+                sb.Append(encrypted); //we put the old string in the sb so we can change exact positions of the letters
+            }
+            
 
             if (TickIndex < encrypted.Length)
             {
@@ -96,14 +93,14 @@ namespace Phantom
                 sb[TickIndex] = c;
 
                 CurrentLabel.Text = sb.ToString(); //replace the letter in the old string with the one in the new
-
+                return false;
             }
             else // when done
             {
-                TickIndex = 0; //reset letter positioning
-                LineIndex++; // go next line if it exists
-                t.Stop(); // stop timer cause string is done
+             //   t.Stop(); // stop timer cause string is done
+                return true;
             }
         }
+    
     }
 }
