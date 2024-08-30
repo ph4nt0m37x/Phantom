@@ -27,7 +27,6 @@ namespace Phantom
         }
         public void SpawnChoiceButtons() //func to spawn both buttons
         {
-            
             optionA.Location = new Point(50, 355);
             optionA.Size = new Size(338, 68);
             optionA.ForeColor = Color.White;

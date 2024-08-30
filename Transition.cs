@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 
@@ -33,6 +34,7 @@ namespace Phantom
         public Choice Choice;
 
         public static bool END_GAME;
+
 
         public Image[] Images =
         {

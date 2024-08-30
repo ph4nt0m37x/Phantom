@@ -127,14 +127,10 @@ namespace Phantom
 
         private void Continue_Click(object sender, EventArgs e)
         {
-            Alphabet.Dispose();
-            Cipher.Dispose();
-            TextBox.Dispose();
-            Continue.Dispose();
-            Hint.Dispose();
+            
 
 
-            if (TextBox.Text == "progress") //if the keyword is correct
+            if (TextBox.Text.ToLower() == "progress") //if the keyword is correct
             {
                 TextBox.Enabled = false;
                 Continue.Enabled = false;
@@ -143,12 +139,15 @@ namespace Phantom
 
             else //if you fail, consequences
             {
-                Transition.sceneCount = 8;
-                Transition.FAIL = true;
-              
+                Transition.sceneCount = 10;
+                Transition.FAIL = true; 
                 TransitionTimer.Start(); //starting the timer back up
             }
-
+            Alphabet.Dispose();
+            Cipher.Dispose();
+            TextBox.Dispose();
+            Continue.Dispose();
+            Hint.Dispose();
         }
 
 
