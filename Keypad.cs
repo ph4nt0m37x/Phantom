@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 
 
 namespace Phantom
 {
-    internal class Keypad
+    public class Keypad
     {
         Button[] buttons = new Button[12];
 
@@ -18,12 +17,6 @@ namespace Phantom
         String input = "";
 
         Label screen = new Label();
-
-        Label timerLabel = new Label();
-
-        Timer timeLeft = new Timer();
-
-        int seconds = new int();
 
         int counter = 0;
 
@@ -62,9 +55,9 @@ namespace Phantom
         {
             this.answer = answer;
             this.timer = t;
-            seconds = 10;
-            timeLeft.Interval = 1000;
-            timeLeft.Tick += new EventHandler(timeLeft_Tick);
+
+            
+
 
         }
 
@@ -89,6 +82,10 @@ namespace Phantom
             Phantom.ActiveForm.Controls.Add(button);
             return button;
 
+            
+
+
+
         }
         public void spawnAllButtons() //func to spawn all buttons automagically
         {
@@ -105,36 +102,9 @@ namespace Phantom
             screen.ForeColor = Color.White;
             screen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             screen.BorderStyle = BorderStyle.FixedSingle;
+
             Phantom.ActiveForm.Controls.Add(screen);
-
-            timerLabel.Enabled = true;
-            timerLabel.Font = new Font("Unispace", 20);
-            timerLabel.Size = new System.Drawing.Size(100, 50);
-            timerLabel.Location = new Point(500, 40);
-            timerLabel.BackColor = Color.Transparent;
-            timerLabel.ForeColor = Color.White;
-            timerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            Phantom.ActiveForm.Controls.Add(timerLabel);
-            timerLabel.Text = seconds.ToString();
-            timeLeft.Start();
         }
-
-        public void timeLeft_Tick(object sender, EventArgs e)
-        {
-            timerLabel.Text = seconds.ToString();
-            seconds--;
-
-            if (seconds == 0) {
-
-                Transition.sceneCount = 10;
-                Transition.FAIL = true;
-                timeLeft.Stop();
-                timer.Start();
-
-            }
-
-        }
-
 
         public void DeleteButtons()
         {
@@ -143,8 +113,6 @@ namespace Phantom
                 b.Dispose();
             }
             screen.Dispose();
-            timerLabel.Dispose();
-            timeLeft.Dispose();
         }
 
         private void Button_Click(object sender, EventArgs e) //event if button is clicked (works for all of the buttons)
@@ -164,7 +132,10 @@ namespace Phantom
                     {
                         if (input == answer) //if correct stop minigame (gets rid of everything and starts the timer again)
                         {
-                            timeLeft.Stop();
+                         /*   foreach(Button b in buttons)
+                            {
+                                b.Enabled = false;
+                            }*/
                             timer.Start();
 
                         }
@@ -182,9 +153,9 @@ namespace Phantom
                             }
                             else
                             {
-                                Transition.sceneCount = 10;
+                                Transition.sceneCount = 8;
                                 Transition.FAIL = true;
-                                timeLeft.Stop();
+                                
                                 timer.Start();
                             }
                         }

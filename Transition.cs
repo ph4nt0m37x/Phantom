@@ -12,7 +12,7 @@ namespace Phantom
 
         public Label label;
 
-        public Scene currScene;
+        public Scene CurrentScene;
 
         public bool hasDialog;
 
@@ -26,15 +26,13 @@ namespace Phantom
 
         public int DialogCounter;
 
-        Keypad keypad;
+        public Keypad Keypad;
 
         public Encryption Encryption;
 
         public Choice Choice;
 
-
         public static bool END_GAME;
-
 
         public Image[] Images =
         {
@@ -63,23 +61,26 @@ namespace Phantom
             DialogCounter = 0; //which dialog it is in the array 
             TickCount = 0; //using the transition timer for the writing of the dialog
             isDone = false; //whether the transition is done
-            currScene = new Scene(Dialogue.TransitionLines[0], label, t1);
+            CurrentScene = new Scene(Dialogue.TransitionLines[0], label, t1);
             textWritten = false;
 
 
-            keypad = new Keypad(dialogTimer, "0109");
+            Keypad = new Keypad(dialogTimer, "0109");
             Encryption = new Encryption(dialogTimer);
             Choice = new Choice("Expose NeuroSync", "Side with Specter", dialogTimer);
         }
 
         public bool Fade(bool isDone)
         {
+
+
+
                 this.isDone = isDone; 
 
-                if (sceneCount == 0 ||sceneCount == 1)
+                if (sceneCount == 0 ||sceneCount == 1 || sceneCount > 8 && DialogCounter != 3)
                 {
                     hasDialog = true;
-                    currScene.CurrentDialog = Dialogue.TransitionLines[DialogCounter];
+                    CurrentScene.CurrentDialog = Dialogue.TransitionLines[DialogCounter];
                 }
                 else
                 {
@@ -108,42 +109,39 @@ namespace Phantom
             if (!isDone)
             {
                 if (TickCount < 20) //timer for fade out
-            {
+                {
                 Phantom.ActiveForm.Opacity -= 0.05;
-            }
+                }
 
-            else if (TickCount == 20) // change background image
-            {
-                    if (END_GAME)
+                else if (TickCount == 20) // change background image
+                {
+                    if (END_GAME && textWritten)
                     {
                         Phantom.ActiveForm.Close();
                     }
 
                     else if (sceneCount < Images.Length)
                     {
-                        
-
-
                         if (sceneCount == 2) //keypad minigame starts
                         {
-                            keypad.spawnAllButtons();
+                            Keypad.spawnAllButtons();
                             
                         }
 
                         else if (sceneCount == 3)
                         {
-                            keypad.DeleteButtons();
+                            Keypad.DeleteButtons();
                             
                         }
 
                         else if (sceneCount == 5) // encryption minigame starts
                         {
-                            Encryption.createGame();
+                            Encryption.CreateGame();
                             
                         }
                         else if (sceneCount == 6) // choice scene appears
                         {
-                            Encryption.DeleteAll();
+                            Encryption.DeleteLabel();
                             //choice here
 
                             Choice.SpawnChoiceButtons();
@@ -156,8 +154,9 @@ namespace Phantom
                     else
                     {
                         Phantom.ActiveForm.BackgroundImage = null;
-                        keypad.DeleteButtons();
-                        Encryption.DeleteAll();
+                        Keypad.DeleteButtons();
+                        Encryption.DeleteLabel();
+
                     }
 
 
@@ -172,7 +171,7 @@ namespace Phantom
             if (TickCount == 40)
                 {
 
-                if(sceneCount == 2 || sceneCount == 5 || sceneCount == 6)
+                if(sceneCount == 2 || sceneCount == 5) //stops the timer for the minigame to take place
                     {
                         dialogTimer.Stop();
                     }
@@ -214,10 +213,10 @@ namespace Phantom
                 {
                     Phantom.ActiveForm.Opacity += 0.05;
                 }
-                else if (TickCount >= 40 && TickCount < currScene.CurrentDialog[0].Length + 40)
+                else if (TickCount >= 40 && TickCount < CurrentScene.CurrentDialog[0].Length + 40)
                 {
                     label.Show();
-                    currScene.DisplayLine(currScene.CurrentDialog[0]);
+                    CurrentScene.DisplayLine(CurrentScene.CurrentDialog[0]);
                     dialogTimer.Start();
 
                 }
@@ -226,7 +225,7 @@ namespace Phantom
                     textWritten = true;
                     TickCount = 0;
                     DialogCounter++;
-                    currScene.TickIndex = 0;
+                    CurrentScene.TickIndex = 0;
                 }
             }
 

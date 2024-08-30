@@ -9,9 +9,9 @@ namespace Phantom
     {
         public static Label Encrypted = new Label();
 
-        Label Cipher1 = new Label();
+        Label Alphabet = new Label();
 
-        Label Cipher2 = new Label();
+        Label Cipher = new Label();
 
         Label Hint = new Label();
 
@@ -19,38 +19,33 @@ namespace Phantom
 
         public Button Continue = new Button();
 
-        public Timer transitionTimer = new Timer();
+        public Timer TransitionTimer = new Timer();
 
-        public Timer dialogT = new Timer();
+        public Timer DialogTimer = new Timer();
 
         public bool Done;
 
-       
 
+        public Scene EncryptMinigame;
 
-        String[] dialogEncrypted = Dialogue.Encrypted;
-
-
-        public Scene encryptScene;
-
-        String alpha = "A: a b c d e f g h i j k l m n o p q r s t u v w x y z";
-        String beta = "C: z x c a s d q w e y t r h g f n b v u i o j k l m p";
+        String A = "A: a b c d e f g h i j k l m n o p q r s t u v w x y z";
+        String C = "C: z x c a s d q w e y t r h g f n b v u i o j k l m p";
 
         public Encryption(Timer t)
         {
-            transitionTimer = t;
+            TransitionTimer = t;
 
-            dialogT.Interval = 30;
+            DialogTimer.Interval = 30;
 
-            dialogT.Tick += new EventHandler(Decrypt_Tick);
+            DialogTimer.Tick += new EventHandler(Decrypt_Tick);
 
-            encryptScene = new Scene(dialogEncrypted, Encrypted, dialogT);
+            EncryptMinigame = new Scene(Dialogue.Encrypted, Encrypted, DialogTimer);
 
             Done = false;
 
         }
 
-        public void createGame()
+        public void CreateGame()
         {
             // main encrypt text
             Encrypted.Enabled = true;
@@ -59,33 +54,33 @@ namespace Phantom
             Encrypted.Location = new Point(120, 70);
             Encrypted.BackColor = Color.Transparent;
             Encrypted.ForeColor = Color.White;
-            Encrypted.Text = dialogEncrypted[0];
+            Encrypted.Text = Dialogue.Encrypted[0];
             Phantom.ActiveForm.Controls.Add(Encrypted);
             Encrypted.BringToFront();
 
             // cipher 1
 
-            Cipher1.Enabled = true;
-            Cipher1.Font = new Font("Unispace", 11);
-            Cipher1.Size = new System.Drawing.Size(575, 30);
-            Cipher1.Location = new Point(120, 330);
-            Cipher1.BackColor = Color.Transparent;
-            Cipher1.ForeColor = Color.White;
-            Cipher1.Text = alpha;
-            Phantom.ActiveForm.Controls.Add(Cipher1);
-            Cipher1.BringToFront();
+            Alphabet.Enabled = true;
+            Alphabet.Font = new Font("Unispace", 11);
+            Alphabet.Size = new System.Drawing.Size(575, 30);
+            Alphabet.Location = new Point(120, 330);
+            Alphabet.BackColor = Color.Transparent;
+            Alphabet.ForeColor = Color.White;
+            Alphabet.Text = A;
+            Phantom.ActiveForm.Controls.Add(Alphabet);
+            Alphabet.BringToFront();
 
             // cipher 2
 
-            Cipher2.Enabled = true;
-            Cipher2.Font = new Font("Unispace", 11);
-            Cipher2.Size = new System.Drawing.Size(575, 30);
-            Cipher2.Location = new Point(120, 360);
-            Cipher2.BackColor = Color.Transparent;
-            Cipher2.ForeColor = Color.White;
-            Cipher2.Text = beta;
-            Phantom.ActiveForm.Controls.Add(Cipher2);
-            Cipher2.BringToFront();
+            Cipher.Enabled = true;
+            Cipher.Font = new Font("Unispace", 11);
+            Cipher.Size = new System.Drawing.Size(575, 30);
+            Cipher.Location = new Point(120, 360);
+            Cipher.BackColor = Color.Transparent;
+            Cipher.ForeColor = Color.White;
+            Cipher.Text = C;
+            Phantom.ActiveForm.Controls.Add(Cipher);
+            Cipher.BringToFront();
 
             //hint 
 
@@ -132,8 +127,8 @@ namespace Phantom
 
         private void Continue_Click(object sender, EventArgs e)
         {
-            Cipher1.Dispose();
-            Cipher2.Dispose();
+            Alphabet.Dispose();
+            Cipher.Dispose();
             TextBox.Dispose();
             Continue.Dispose();
             Hint.Dispose();
@@ -143,15 +138,15 @@ namespace Phantom
             {
                 TextBox.Enabled = false;
                 Continue.Enabled = false;
-                dialogT.Start();
+                DialogTimer.Start();
             }
 
-            else
+            else //if you fail, consequences
             {
                 Transition.sceneCount = 8;
                 Transition.FAIL = true;
               
-                transitionTimer.Start(); //starting the timer back up
+                TransitionTimer.Start(); //starting the timer back up
             }
 
         }
@@ -159,24 +154,20 @@ namespace Phantom
 
         private void Decrypt_Tick(object sender, EventArgs e) {
 
-            
-
             if (!Done)
             {
-                Done = encryptScene.Decrypt(Dialogue.Decrypted[0], Dialogue.Encrypted[0]);
-                encryptScene.TickIndex++;
+                Done = EncryptMinigame.Decrypt(Dialogue.Decrypted[0], Dialogue.Encrypted[0]);
+                EncryptMinigame.TickIndex++;
             }
             else
-            {
-               
-                dialogT.Stop();
-                transitionTimer.Start();
+            {           
+                DialogTimer.Stop();
+                TransitionTimer.Start();
             }
         }
 
-        public void DeleteAll()
+        public void DeleteLabel()
         {
-
             Encrypted.Dispose(); //disposing of all the buttons created for the scene
 
         }

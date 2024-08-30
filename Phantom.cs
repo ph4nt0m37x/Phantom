@@ -100,21 +100,17 @@ namespace Phantom
         private void sceneTimer_Tick(object sender, EventArgs e)
         {
 
-            if (transitionDone && MainScene.DialogCounter == 2 && !Transition.FAIL)
+            if (transitionDone && MainScene.DialogCounter == 2)
             {
                 transitionDone = false;
                 MainScene.DialogCounter++;
                 transitionTimer.Start();
             }
-            else if (transitionDone && Transition.FAIL)
-            {
-                transitionDone = false;
-                MainScene.DialogCounter = 10;
-                transitionTimer.Start();
-            }
+
 
             else if (transitionDone)
             {
+
 
                     sceneDone = false;
                     MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
@@ -230,7 +226,7 @@ namespace Phantom
 
         public void ifDone()
         {
-     
+            
              if (sceneDone)
             {
                 if (MainScene.DialogCounter == 8 || MainScene.DialogCounter == 9 || MainScene.DialogCounter == 10)
@@ -241,10 +237,17 @@ namespace Phantom
                 transitionDone = false;
                 validClick = false;
                 dialogueTimer.Stop(); //stop the dialogue timer
+
                 transitionTimer.Start(); //start the next transition
             }
 
-            else if (Transition.sceneCount == 7) //if its the choice scene, then the dialogue chosen matters.
+
+            if (Transition.FAIL)
+            {
+                MainScene.DialogCounter = 10;
+            }
+
+            else if (Transition.sceneCount == 10) //if its the choice scene, then the dialogue chosen matters.
             {
                 if (Choice.expose)
                 {
