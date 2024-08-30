@@ -63,9 +63,9 @@ namespace Phantom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap encrypt {
+        internal static System.Drawing.Bitmap cipher {
             get {
-                object obj = ResourceManager.GetObject("encrypt", resourceCulture);
+                object obj = ResourceManager.GetObject("cipher", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Phantom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap keypadTEMP {
+        internal static System.Drawing.Bitmap encrypt {
             get {
-                object obj = ResourceManager.GetObject("keypadTEMP", resourceCulture);
+                object obj = ResourceManager.GetObject("encrypt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -110,19 +110,16 @@
     <Resource Include="Resources\keypadTEST.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\keypadTEMP.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\stealth-music-background.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WRONG.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\encryption.png" />
+    <None Include="images\encrypt.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\encrypt.png" />
+    <None Include="images\cipher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

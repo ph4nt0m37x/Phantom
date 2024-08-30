@@ -100,17 +100,21 @@ namespace Phantom
         private void sceneTimer_Tick(object sender, EventArgs e)
         {
 
-            if (transitionDone && MainScene.DialogCounter == 2)
+            if (transitionDone && MainScene.DialogCounter == 2 && !Transition.FAIL)
             {
                 transitionDone = false;
                 MainScene.DialogCounter++;
                 transitionTimer.Start();
             }
-
+            else if (transitionDone && Transition.FAIL)
+            {
+                transitionDone = false;
+                MainScene.DialogCounter = 10;
+                transitionTimer.Start();
+            }
 
             else if (transitionDone)
             {
-
 
                     sceneDone = false;
                     MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
@@ -226,13 +230,10 @@ namespace Phantom
 
         public void ifDone()
         {
-            
-            
-
-
+     
              if (sceneDone)
             {
-                if (MainScene.DialogCounter == 7 || MainScene.DialogCounter == 8 || MainScene.DialogCounter == 9)
+                if (MainScene.DialogCounter == 8 || MainScene.DialogCounter == 9 || MainScene.DialogCounter == 10)
                 {
                     Transition.END_GAME = true;
                 }
@@ -240,25 +241,18 @@ namespace Phantom
                 transitionDone = false;
                 validClick = false;
                 dialogueTimer.Stop(); //stop the dialogue timer
-
                 transitionTimer.Start(); //start the next transition
-            }
-
-
-            if (Transition.FAIL)
-            {
-                MainScene.DialogCounter = 9;
             }
 
             else if (Transition.sceneCount == 7) //if its the choice scene, then the dialogue chosen matters.
             {
                 if (Choice.expose)
                 {
-                    MainScene.DialogCounter = 7;
+                    MainScene.DialogCounter = 8;
                 }
                 else
                 {
-                    MainScene.DialogCounter = 8;
+                    MainScene.DialogCounter = 9;
                 }
             }
 

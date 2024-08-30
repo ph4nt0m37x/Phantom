@@ -41,7 +41,7 @@ namespace Phantom
             
             Properties.Resources.opening, //0
             Properties.Resources.preCipher, //1
-            Properties.Resources.keypadTEMP, //2
+            Properties.Resources.cipher, //2
             Properties.Resources.postCipher, //3
             Properties.Resources.serverRoom, //4
             Properties.Resources.encrypt, //5
@@ -67,7 +67,7 @@ namespace Phantom
             textWritten = false;
 
 
-            keypad = new Keypad(dialogTimer, "1234");
+            keypad = new Keypad(dialogTimer, "0109");
             Encryption = new Encryption(dialogTimer);
             Choice = new Choice("Expose NeuroSync", "Side with Specter", dialogTimer);
         }

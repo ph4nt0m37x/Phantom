@@ -95,7 +95,7 @@ namespace Phantom
             Hint.Location = new Point(400, 400);
             Hint.BackColor = Color.Transparent;
             Hint.ForeColor = Color.LightGray;
-            Hint.Text = "(hint: encrypt september)";
+            Hint.Text = "(word to decrypt: nvfqvsuu)";
             Phantom.ActiveForm.Controls.Add(Hint);
             Hint.BringToFront();
 
@@ -132,8 +132,14 @@ namespace Phantom
 
         private void Continue_Click(object sender, EventArgs e)
         {
- 
-            if (TextBox.Text == "cwzgqs") //if the keyword is correct
+            Cipher1.Dispose();
+            Cipher2.Dispose();
+            TextBox.Dispose();
+            Continue.Dispose();
+            Hint.Dispose();
+
+
+            if (TextBox.Text == "progress") //if the keyword is correct
             {
                 TextBox.Enabled = false;
                 Continue.Enabled = false;
@@ -172,11 +178,7 @@ namespace Phantom
         {
 
             Encrypted.Dispose(); //disposing of all the buttons created for the scene
-            Cipher1.Dispose();
-            Cipher2.Dispose();
-            TextBox.Dispose();
-            Continue.Dispose();
-            Hint.Dispose();
+
         }
 
 
