@@ -11,6 +11,10 @@ namespace Phantom
 
             new string[] // 0 - starting dialogue
             {
+            "r0gu3: Hello, Nix. Pleasure to be working with you again.",
+            "Nix: ",
+            "r0gu3:",
+            "Nix: ",
             "r0gu3: NeuroSync is on the brink of a breakthrough with their latest cybernetic implant.",
             "r0gu3: Rumor has it, it's game changing.",
             "r0gu3: I only need the blueprints to recreate it.",
@@ -71,9 +75,10 @@ namespace Phantom
 
             },
 
-            new string[] // 5
+            new string[] // 5 - allowing the player to choose to resume after they've read the file
+
             {
-                ""
+                "Click / Press SPACE to continue"
             },
 
             new string [] // 6 - post-encryption dialogue
@@ -93,8 +98,12 @@ namespace Phantom
                 "But now - the truth is staring you in the face.",
                 "The choice is in your hands."
             },
+            new string[] // 7 - blank in between (dont ask we suffered)
+            {
 
-            new string[] // 7 - expose
+            },
+
+            new string[] // 8 - expose
             {
                 "Nix: I’m sorry, Specter.",
                 "Specter: NIX, DON’T ---",
@@ -103,7 +112,7 @@ namespace Phantom
                 "True change demands sacrifice. The question isn’t whether you can pay the price, but whether you’re willing to."
             },
 
-             new string[] // 8 - be selfish (live) :(
+             new string[] // 9 - be selfish (live) :(
             {
                 "Nix: I’ve taken the blueprints.",
                 "Specter: Good. We stick to the plan. No heroics.",
@@ -112,7 +121,7 @@ namespace Phantom
                 "In this world, the price of seeing everything is too high. Sometimes, you have to choose to see nothing."
             },
 
-            new string[] //9 last, fail (case default)
+            new string[] //10 last, fail (case default)
             {
             "Nix: --Shit!",
             "Specter: Nix? You there?",
@@ -126,25 +135,32 @@ namespace Phantom
 
         public static List<String[]> TransitionLines = new List<string[]>
         {
-            new string[]
-            {
-                "test",
 
-            },
             new string[]
             {
-                "NeuroSync Innovation Hub, Neo Solaris, 00:00h, 7th July 2077"
+                "Sector 9, Neo Solaris, 19:28h, July 5th 2077"
+            },
+
+            new string[]
+            {
+                "NeuroSync Innovation Hub, Neo Solaris, 00:00h, July 7th 2077"
+            },
+
+            new string[]
+            {
+                "GAME OVER"
             }
+
 
         };
 
         public static string[] Decrypted =
         {
             "TO WHOEVER FINDS THIS: It means I’m no longer here.\r\n" +
-            "If you’re reading this, you’ve either received the confidential security key from me or taken it by force." +
-            "Regardless of how you got it, you need to read carefully." +
-            "Do not turn a blind eye to what’s happening at NeuroSync. \r\n" +
-            "Throughout my time here, I’ve compiled irrefutable evidence—evidence of illegal human experimentation." +
+            "If you’re reading this, you’ve either received the confidential security key from me or taken it by force. " +
+            "Regardless of how you got it, you need to read carefully. " +
+            "Do not turn a blind eye to what’s happening at NeuroSync.\r\n" +
+            "Throughout my time here, I’ve compiled irrefutable evidence—evidence of illegal human experimentation. " +
             "Hundreds of victims, unaware of their fate, have suffered in the name of \"progress.\"\r\n" +
             "This data must be released to the public. NeuroSync will not stop—they are relentless, driven by greed and the pursuit of experimental implants that line their investors’ pockets.\r\n" +
             "I have a family. You understand my position. Do the right thing."
@@ -153,10 +169,10 @@ namespace Phantom
         public static string[] Encrypted =
         {
             "IF KWFSJSV DEGAU IWEU: Ei hszgu E’h gf rfgqsv wsvs.\r\n" +
-            "Ed mfo’vs vszaegq iweu, mfo’js seiwsv vscsejsa iws cfgdeasgiezr uscoveim tsm dvfh hs fv iztsg ei xm dfvcs." +
+            "Ed mfo’vs vszaegq iweu, mfo’js seiwsv vscsejsa iws cfgdeasgiezr uscoveim tsm dvfh hs fv iztsg ei xm dfvcs. " +
             "Vsqzvarsuu fd wfk mfo qfi ei, mfo gssa if vsza czvsdorrm. " +
             "Af gfi iovg z xrega sms if kwzi’u wznnsgegq zi GsovfUmgc.\r\n" +
-            "Iwvfoqwfoi hm iehs wsvs, E’js cfhnersa evvsdoizxrs sjeasgcs—sjeasgcs fd errsqzr wohzg slnsvehsgiziefg." +
+            "Iwvfoqwfoi hm iehs wsvs, E’js cfhnersa evvsdoizxrs sjeasgcs—sjeasgcs fd errsqzr wohzg slnsvehsgiziefg. " +
             "Wogavsau fd jeciehu, ogzkzvs fd iwsev dzis, wzjs uoddsvsa eg iws gzhs fd \"nvfqvsuu.\"\r\n" +
             "Iweu aziz houi xs vsrszusa if iws noxrec. GsovfUmgc kerr gfi uifn—iwsm zvs vsrsgirsuu, avejsg xm qvssa zga iws novuoei fd slnsvehsgizr ehnrzgiu iwzi regs iwsev egjsuifvu’ nfctsiu.\r\n" +
             "E wzjs z dzherm. Mfo ogasvuizga hm nfueiefg. Af iws veqwi iwegq."
@@ -168,8 +184,9 @@ namespace Phantom
         {
 
                 "created by: Marija Ilievska && Nikola Janev\n" +
-                "art: Screenshots from Cyberpunk 2077,\n" +
-                "FreePik: https://www.freepik.com/author/freepik"
+                "art: Screenshots from Cyberpunk 2077\n" +
+                "freepik: https://www.freepik.com/author/freepik\n"+
+                "music: https://pixabay.com/users/nickpanek620-38266323/"
 
         };
 

@@ -76,10 +76,10 @@ namespace Phantom
         {
                 this.isDone = isDone; 
 
-                if (sceneCount == 1) //only after the first scene theres a 
+                if (sceneCount == 0 ||sceneCount == 1)
                 {
                     hasDialog = true;
-                    currScene.CurrentDialog = Dialogue.TransitionLines[sceneCount];
+                    currScene.CurrentDialog = Dialogue.TransitionLines[DialogCounter];
                 }
                 else
                 {
@@ -119,8 +119,7 @@ namespace Phantom
                         Phantom.ActiveForm.Close();
                     }
 
-
-                    else if(sceneCount < Images.Length)
+                    else if (sceneCount < Images.Length)
                     {
                         
 
@@ -227,6 +226,7 @@ namespace Phantom
                     textWritten = true;
                     TickCount = 0;
                     DialogCounter++;
+                    currScene.TickIndex = 0;
                 }
             }
 

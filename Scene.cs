@@ -68,6 +68,7 @@ namespace Phantom
                 }
                 return false;
             }
+
             else //when dialog scene is finished - reset dialog box (we reuse it a lot, best not to delete)
             {
                 CurrentLabel.Text = "";

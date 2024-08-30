@@ -80,7 +80,7 @@ namespace Phantom
             ButtonCredits.Dispose();
             ButtonOptions.Dispose();
 
-            
+            lblDialog.TextAlign = ContentAlignment.MiddleLeft; 
 
 
 
@@ -99,16 +99,25 @@ namespace Phantom
         //Transition timer
         private void sceneTimer_Tick(object sender, EventArgs e)
         {
-            if (transitionDone)
+
+            if (transitionDone && MainScene.DialogCounter == 2)
+            {
+                transitionDone = false;
+                MainScene.DialogCounter++;
+                transitionTimer.Start();
+            }
+
+
+            else if (transitionDone)
             {
 
-                sceneDone = false;
-                MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
-                MainScene.LineIndex = 0;
-                transitionTimer.Stop();
-                validClick = true;
-                dialogueTimer.Start();
 
+                    sceneDone = false;
+                    MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
+                    MainScene.LineIndex = 0;
+                    transitionTimer.Stop();
+                    validClick = true;
+                    dialogueTimer.Start();
             }
             else
             {
@@ -137,16 +146,9 @@ namespace Phantom
             if (validClick)
             {
                 sceneDone = MainScene.DisplayDialog(MainScene.CurrentDialog[0]);
+
                 ifDone();
-                if (sceneDone)
-                {
-                    transitionDone = false;
-                    validClick = false;
-                    dialogueTimer.Stop(); //stop the dialogue timer
 
-                    transitionTimer.Start(); //start the next transition
-
-                }
 
             }
         }
@@ -207,6 +209,7 @@ namespace Phantom
             Credits.TickIndex = 0;
             Credits.LineIndex = 0;
             creditsTimer.Enabled = !creditsTimer.Enabled;
+            lblDialog.TextAlign = ContentAlignment.MiddleCenter;
 
         }
 
@@ -224,13 +227,21 @@ namespace Phantom
         public void ifDone()
         {
             
+            
 
-            if (sceneDone)
+
+             if (sceneDone)
             {
                 if (MainScene.DialogCounter == 7 || MainScene.DialogCounter == 8 || MainScene.DialogCounter == 9)
                 {
                     Transition.END_GAME = true;
                 }
+
+                transitionDone = false;
+                validClick = false;
+                dialogueTimer.Stop(); //stop the dialogue timer
+
+                transitionTimer.Start(); //start the next transition
             }
 
 
