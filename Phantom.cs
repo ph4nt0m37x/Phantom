@@ -258,11 +258,6 @@ namespace Phantom
             
         }
 
-        private void ButtonMusic_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ButtonMusic_KeyDown(object sender, KeyEventArgs e)
         {
             OnClick();
@@ -289,9 +284,5 @@ namespace Phantom
             
         }
 
-        private void lblDialog_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

@@ -147,7 +147,6 @@
             this.lblDialog.Name = "lblDialog";
             this.lblDialog.Size = new System.Drawing.Size(1029, 122);
             this.lblDialog.TabIndex = 7;
-            this.lblDialog.Click += new System.EventHandler(this.lblDialog_Click);
             this.lblDialog.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDialog_MouseClick);
             // 
             // dialogueTimer
