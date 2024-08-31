@@ -128,9 +128,6 @@ namespace Phantom
 
         private void Continue_Click(object sender, EventArgs e)
         {
-            
-
-
             if (TextBox.Text.ToLower() == "progress") //if the keyword is correct
             {
                 TextBox.Enabled = false;
@@ -145,7 +142,7 @@ namespace Phantom
                 TransitionTimer.Start(); //starting the timer back up
             }
 
-            Alphabet.Dispose();
+            Alphabet.Dispose(); //disposing of all the buttons and labels
             Cipher.Dispose();
             TextBox.Dispose();
             Continue.Dispose();
@@ -155,12 +152,12 @@ namespace Phantom
 
         private void Decrypt_Tick(object sender, EventArgs e) {
 
-            if (!Done)
+            if (!Done) //until its done decrypting, keep going
             {
                 Done = EncryptMinigame.Decrypt(Dialogue.Decrypted[0], Dialogue.Encrypted[0]);
                 EncryptMinigame.TickIndex++;
             }
-            else
+            else //stop once it finishes
             {           
                 DialogTimer.Stop();
                 TransitionTimer.Start();
@@ -169,7 +166,7 @@ namespace Phantom
 
         public void DeleteLabel()
         {
-            Encrypted.Dispose(); //disposing of all the buttons created for the scene
+            Encrypted.Dispose(); //disposing of all the label
 
         }
 

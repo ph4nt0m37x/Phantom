@@ -8,19 +8,19 @@ namespace Phantom
 {
     public class Keypad
     {
-        Button[] buttons = new Button[12];
+        Button[] Buttons = new Button[12];
 
-        Timer timer = new Timer();
+        Timer T = new Timer();
 
-        String answer;
+        String Answer;
 
-        String input = "";
+        String Input = "";
 
-        Label screen = new Label();
+        Label Code = new Label();
 
         int counter = 0;
 
-        public string[] buttonText = //text for the buttons
+        public string[] ButtonText = //text for the buttons
         {
             "1",
             "2",
@@ -36,7 +36,7 @@ namespace Phantom
             ">"
         };
 
-        public Point[] point = //points where buttons are spawned
+        public Point[] Point = //points where buttons are spawned
         {
             new Point(89, 102),
             new Point(175, 102),
@@ -53,8 +53,8 @@ namespace Phantom
         };
         public Keypad(Timer t, String answer) //const (give it the right timer so it can stop the game until the minigame is done)
         {
-            this.answer = answer;
-            this.timer = t;
+            this.Answer = answer;
+            this.T = t;
 
             
 
@@ -63,76 +63,72 @@ namespace Phantom
 
         public Button spawnButton(string s, Point p) //func to spawn a single button with text s at point p
         {
-            Button button = new Button();
-            button.Text = s;
+            Button Button = new Button();
+            Button.Text = s;
 
-            button.Location = p;
-            button.Show();
-            button.Enabled = true;
-            button.Size = new System.Drawing.Size(80, 80);
-            button.BackColor = Color.Transparent;
-            button.ForeColor = Color.White;
-            button.FlatAppearance.BorderColor = Color.White;
-            button.FlatAppearance.MouseOverBackColor = Color.DarkCyan;
-            button.FlatStyle = FlatStyle.Flat;
-            button.FlatAppearance.BorderSize = 2;
-            button.Click += new EventHandler(Button_Click);
-            button.TabStop = false;
-            button.Font = new Font("Unispace", 20);
-            Phantom.ActiveForm.Controls.Add(button);
-            return button;
-
-            
-
-
+            Button.Location = p;
+            Button.Show();
+            Button.Enabled = true;
+            Button.Size = new System.Drawing.Size(80, 80);
+            Button.BackColor = Color.Transparent;
+            Button.ForeColor = Color.White;
+            Button.FlatAppearance.BorderColor = Color.White;
+            Button.FlatAppearance.MouseOverBackColor = Color.DarkCyan;
+            Button.FlatStyle = FlatStyle.Flat;
+            Button.FlatAppearance.BorderSize = 2;
+            Button.Click += new EventHandler(Button_Click);
+            Button.TabStop = false;
+            Button.Font = new Font("Unispace", 20);
+            Phantom.ActiveForm.Controls.Add(Button);
+            return Button;
 
         }
-        public void spawnAllButtons() //func to spawn all buttons automagically
+        public void SpawnAllButtons() //func to spawn all buttons automagically
         {
             for (int i = 0; i < 12; i++)
             {
-                buttons[i] = spawnButton(buttonText[i], point[i]);
-                buttons[i].BringToFront();
+                Buttons[i] = spawnButton(ButtonText[i], Point[i]);
+                Buttons[i].BringToFront();
             }
-            screen.Enabled = true;
-            screen.Font = new Font("Unispace", 25);
-            screen.Size = new System.Drawing.Size(250, 50);
-            screen.Location = new Point(90, 40);
-            screen.BackColor = Color.Transparent;
-            screen.ForeColor = Color.White;
-            screen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            screen.BorderStyle = BorderStyle.FixedSingle;
+            Code.Enabled = true;
+            Code.Font = new Font("Unispace", 25);
+            Code.Size = new System.Drawing.Size(250, 50);
+            Code.Location = new Point(90, 40);
+            Code.BackColor = Color.Transparent;
+            Code.ForeColor = Color.White;
+            Code.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            Code.BorderStyle = BorderStyle.FixedSingle;
 
-            Phantom.ActiveForm.Controls.Add(screen);
+            Phantom.ActiveForm.Controls.Add(Code);
         }
 
         public void DeleteButtons()
         {
-            foreach (Button b in buttons)
+            foreach (Button b in Buttons)
             {
                 b.Dispose();
             }
-            screen.Dispose();
+            Code.Dispose();
         }
 
         private void Button_Click(object sender, EventArgs e) //event if button is clicked (works for all of the buttons)
         {
-            Button button = sender as Button;
-            if (button != null)
+            Button Button = sender as Button;
+            if (Button != null)
             {
-                if (button.Text == "DEL" || button.Text == ">") //check if button pressed has special action
+                if (Button.Text == "DEL" || Button.Text == ">") //check if button pressed has special action
                 {
-                    if (button.Text == "DEL" && input.Length > 0) //if DEL pressed remove the most recent character
+                    if (Button.Text == "DEL" && Input.Length > 0) //if DEL pressed remove the most recent character
                     {
-                        input = input.Remove(input.Length - 1);
-                        screen.Text = input;
+                        Input = Input.Remove(Input.Length - 1);
+                        Code.Text = Input;
                     }
                     else
-                    if (input.Length == 4)  //if > is pressed and the input field is full check if answer is correct
+                    if (Input.Length == 4)  //if > is pressed and the input field is full check if answer is correct
                     {
-                        if (input == answer) //if correct stop minigame (gets rid of everything and starts the timer again)
+                        if (Input == Answer) //if correct stop minigame (gets rid of everything and starts the timer again)
                         {
-                            timer.Start();
+                            T.Start();
                             
                         }
                         else
@@ -140,8 +136,8 @@ namespace Phantom
 
                             if (counter < 2)
                             {
-                                screen.Text = "";
-                                input = "";
+                                Code.Text = "";
+                                Input = "";
                                 counter++;
 
                             }
@@ -150,7 +146,7 @@ namespace Phantom
                                 Transition.sceneCount = 7;
                                 Transition.FAIL = true;
                                 DeleteButtons();
-                                timer.Start();
+                                T.Start();
                             }
                         }
 
@@ -159,10 +155,10 @@ namespace Phantom
                 }
                 else // if not special input add input to input field 
                 {
-                    if (input.Length < 4)
+                    if (Input.Length < 4)
                     {
-                        input += button.Text;
-                        screen.Text = input;
+                        Input += Button.Text;
+                        Code.Text = Input;
                     }
                 }
             }

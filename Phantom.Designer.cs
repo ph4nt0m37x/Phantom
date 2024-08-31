@@ -63,6 +63,7 @@
             this.ButtonMusic.Text = "music";
             this.ButtonMusic.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.ButtonMusic.UseVisualStyleBackColor = false;
+            this.ButtonMusic.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ButtonMusic_KeyDown);
             this.ButtonMusic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ButtonMusic_MouseClick);
             this.ButtonMusic.MouseEnter += new System.EventHandler(this.ButtonOptions_MouseEnter);
             this.ButtonMusic.MouseLeave += new System.EventHandler(this.ButtonOptions_MouseLeave);

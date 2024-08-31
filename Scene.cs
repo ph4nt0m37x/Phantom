@@ -30,7 +30,7 @@ namespace Phantom
             LineIndex = 0;
             T = t;
             sb = new StringBuilder();
-            Choice = new Choice("Expose NeuroSync", "Side with Specter", t);
+            Choice = new Choice("Expose NeuroSync", "Side with Apoc", t);
 
         }
 
@@ -82,7 +82,7 @@ namespace Phantom
             else //when dialog scene is finished - reset dialog box (we reuse it a lot, best not to delete)
             {  
 
-                if (DialogCounter == 6)
+                if (DialogCounter == 6) //if the 6th dialogue has finished, spawn the buttons
                 {
                     Choice.SpawnChoiceButtons();
                     Choice.clicked = false;
@@ -95,7 +95,7 @@ namespace Phantom
 
                 else if (DialogCounter == 7 || DialogCounter == 8 || DialogCounter == 9)
                 {
-                    Transition.END_GAME = true;
+                    Transition.END_GAME = true; //if the last dialogue has finished, initiate end_game transition
                     return true;
                 }
                 else

@@ -61,18 +61,12 @@ namespace Phantom
 
         private void dialogueTimer_Tick(object sender, EventArgs e)
         {
-            if (!sceneDone) //if the click is valid, if its on a scene
+            if (!sceneDone) //if the scene isnt done, continue
             {
                 MainScene.DisplayLine(MainScene.CurrentDialog[MainScene.LineIndex]);
             }
-            else { 
-            
-              /*  if (MainScene.DialogCounter == 7  && !Transition.END_GAME || MainScene.DialogCounter == 8 && !Transition.END_GAME)
-                {//if its the last dialogue before the end of the game
-                    sceneDone = false;
-                    dialogueTimer.Start();
-                }*/
-               
+            else //if the scene is done, move onto a transition
+            { 
                     transitionDone = false;
                     Transition.sceneCount++;
                     dialogueTimer.Stop();
@@ -89,10 +83,10 @@ namespace Phantom
             ButtonStart.Dispose(); //removing the Buttons
             ButtonCredits.Dispose();
 
-            lblDialog.TextAlign = ContentAlignment.MiddleLeft; 
+            lblDialog.TextAlign = ContentAlignment.MiddleLeft; //realign label correctly
 
             lblMenu.Dispose(); // remove label 
-            menuTimer.Dispose();
+            menuTimer.Dispose(); //remove menu timer
             creditsTimer.Dispose(); // remove credits timer
             lblDialog.Text = "";
             lblDialog.Hide();
@@ -106,7 +100,7 @@ namespace Phantom
         private void sceneTimer_Tick(object sender, EventArgs e)
         {
 
-            if (transitionDone && MainScene.DialogCounter == 2)
+            if (transitionDone && MainScene.DialogCounter == 2) //transition to the next scene after finishing the keypad minigame
             {
 
                 transitionDone = false;
@@ -114,17 +108,15 @@ namespace Phantom
                 transitionTimer.Start();
             }
 
-
-            if (transitionDone && Transition.sceneCount == 8)
+            if (transitionDone && Transition.sceneCount == 8) //if the transition scene is at count 8
             {
-
                 transitionDone = false;
                 MainScene.DialogCounter = 9;
                 transitionTimer.Start();
             }
 
 
-            else if (transitionDone)
+            else if (transitionDone) //if the transition is done, validate clicks and move to the next scene
             {
                     lblDialog.Show();
                     sceneDone = false;
@@ -159,33 +151,44 @@ namespace Phantom
 
         public void OnClick()
         {
-            if (MainScene.DialogCounter >= 6 && Choice.spawned)
+            if (MainScene.DialogCounter >= 6 && Choice.spawned) //if the choice buttons are spawned
             {
-                validClick = Choice.clicked;
+                validClick = Choice.clicked; //if they are clicked, then allow dialog to proceed / if they arent - dont
             }
 
             if (validClick)
             {
 
-                if (MainScene.DialogCounter == 6)
+                if (MainScene.DialogCounter == 6) //if its the 6th scene, and a choice has been made, set appropriate fate choice
                 {
-  
-
-                    MainScene.DialogCounter = MainScene.DialogCounter + Choice.expose;
+                    MainScene.DialogCounter = MainScene.DialogCounter + Choice.expose; //set dialogue chosen
                     MainScene.CurrentDialog = Dialogue.Dialogues[MainScene.DialogCounter];
                 }
 
                 sceneDone = MainScene.DisplayDialog(MainScene.CurrentDialog[0]);
 
-                ifDone();
+                IfDone();
 
             }
-            
+     
+        }
+        public void IfDone()
+        {
+            if (sceneDone)
+            {
+                if (Transition.FAIL) //if the transition detects a failure in the minigames,
+                                     //set appropriate dialogue in the main scene
+                {
+                    MainScene.DialogCounter = 9;
+                }
 
+                transitionDone = false;
+                validClick = false;
+                dialogueTimer.Stop(); //stop the dialogue timer
+                transitionTimer.Start(); //start the next transition
+            }
 
         }
-
-
 
         //Menu Screen Button Colors
 
@@ -250,25 +253,8 @@ namespace Phantom
             if (e.KeyCode.Equals(Keys.Space))
             {
                 OnClick();
-                Invalidate();
+                //Invalidate();
             }
-            
-        }
-
-        public void ifDone()
-        {
-             if (sceneDone)
-            {
-                if (Transition.FAIL)
-                {
-                    MainScene.DialogCounter = 9;
-                }
-
-                transitionDone = false;
-                validClick = false;
-                dialogueTimer.Stop(); //stop the dialogue timer
-                transitionTimer.Start(); //start the next transition
-            } 
             
         }
 
@@ -279,14 +265,15 @@ namespace Phantom
 
         private void ButtonMusic_KeyDown(object sender, KeyEventArgs e)
         {
-            Phantom_KeyDown(sender, e);
+            OnClick();
+            Invalidate();
         }
 
         private void ButtonMusic_MouseClick(object sender, MouseEventArgs e)
         {
             SoundPlayer player = new SoundPlayer(Properties.Resources.stealth_music_background);
 
-            music = !music;
+            music = !music; //music variable to play if stopped, to stop if playing
 
             if (music)
             {
@@ -304,7 +291,7 @@ namespace Phantom
 
         private void lblDialog_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Phantom
 
         public int TickCount;
 
-        public Label label;
+        public Label Label;
 
         public Scene CurrentScene;
 
@@ -21,7 +21,7 @@ namespace Phantom
 
         public bool textWritten;
 
-        public Timer dialogTimer;
+        public Timer DialogTimer;
 
         public static bool FAIL;
 
@@ -51,8 +51,8 @@ namespace Phantom
 
         public Transition(Timer t1, Label label) {
 
-            dialogTimer = t1; //setting the dialogue timer
-            this.label = label; // setting the label in which letters shall be written
+            DialogTimer = t1; //setting the dialogue timer
+            this.Label = label; // setting the label in which letters shall be written
             sceneCount = 0; //what scene it is in order to change the background
 
             END_GAME = false;
@@ -65,8 +65,8 @@ namespace Phantom
             textWritten = false;
 
 
-            Keypad = new Keypad(dialogTimer, "0109");
-            Encryption = new Encryption(dialogTimer);
+            Keypad = new Keypad(DialogTimer, "0109");
+            Encryption = new Encryption(DialogTimer);
         }
 
         public bool Fade(bool isDone)
@@ -121,7 +121,7 @@ namespace Phantom
                     {
                         if (sceneCount == 2) //keypad minigame starts
                         {
-                            Keypad.spawnAllButtons();                          
+                            Keypad.SpawnAllButtons();                          
                         }
 
                         if (sceneCount > 2)
@@ -159,7 +159,7 @@ namespace Phantom
                     }
 
 
-                    label.Text = "";
+                    Label.Text = "";
             }
 
             else if (TickCount >= 20 && TickCount < 40) //timer for fade in
@@ -172,7 +172,7 @@ namespace Phantom
 
                 if(sceneCount == 2 || sceneCount == 5) //stops the timer for the minigame to take place
                     {
-                        dialogTimer.Stop();
+                        DialogTimer.Stop();
                     }
 
                 TickCount = 0;
@@ -190,14 +190,14 @@ namespace Phantom
             
             if (textWritten)
             {
-                label.Enabled = false;
+                Label.Enabled = false;
                 FadeToNext();
             }
             else
             {
                 if (TickCount == 1)
                 {
-                    label.Enabled = true;
+                    Label.Enabled = true;
                 }
                 if (TickCount < 20) //timer for fade out
                 {
@@ -205,7 +205,7 @@ namespace Phantom
                 }
                 else if (TickCount == 20) //when the form is invisible, set wallpaper to black
                 {
-                    label.Hide();
+                    Label.Hide();
                     Phantom.ActiveForm.BackgroundImage = null;
                 }
                 else if (TickCount >= 20 && TickCount < 40) //timer for fade in
@@ -214,9 +214,9 @@ namespace Phantom
                 }
                 else if (TickCount >= 40 && TickCount < CurrentScene.CurrentDialog[0].Length + 40)
                 {
-                    label.Show();
+                    Label.Show();
                     CurrentScene.DisplayLine(CurrentScene.CurrentDialog[0]);
-                    dialogTimer.Start();
+                    DialogTimer.Start();
 
                 }
                 else if (TickCount == 300)
