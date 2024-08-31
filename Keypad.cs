@@ -73,11 +73,11 @@ namespace Phantom
             button.BackColor = Color.Transparent;
             button.ForeColor = Color.White;
             button.FlatAppearance.BorderColor = Color.White;
-            button.FlatAppearance.MouseOverBackColor = Color.GhostWhite;
+            button.FlatAppearance.MouseOverBackColor = Color.DarkCyan;
             button.FlatStyle = FlatStyle.Flat;
             button.FlatAppearance.BorderSize = 2;
             button.Click += new EventHandler(Button_Click);
-            button.TabStop = true;
+            button.TabStop = false;
             button.Font = new Font("Unispace", 20);
             Phantom.ActiveForm.Controls.Add(button);
             return button;
@@ -132,12 +132,8 @@ namespace Phantom
                     {
                         if (input == answer) //if correct stop minigame (gets rid of everything and starts the timer again)
                         {
-                         /*   foreach(Button b in buttons)
-                            {
-                                b.Enabled = false;
-                            }*/
                             timer.Start();
-
+                            
                         }
                         else
                         {
@@ -146,16 +142,14 @@ namespace Phantom
                             {
                                 screen.Text = "";
                                 input = "";
-
-                          //     SystemSounds.Beep.Play();
                                 counter++;
 
                             }
                             else
                             {
-                                Transition.sceneCount = 8;
+                                Transition.sceneCount = 7;
                                 Transition.FAIL = true;
-                                
+                                DeleteButtons();
                                 timer.Start();
                             }
                         }

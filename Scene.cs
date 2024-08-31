@@ -19,6 +19,8 @@ namespace Phantom
 
         public StringBuilder sb { get; set; }
 
+        public Choice Choice;
+
         public Scene(string[] current, Label lbl, Timer t)
         {
             CurrentDialog = current;
@@ -28,6 +30,7 @@ namespace Phantom
             LineIndex = 0;
             T = t;
             sb = new StringBuilder();
+            Choice = new Choice("Expose NeuroSync", "Side with Specter", t);
 
         }
 
@@ -50,6 +53,13 @@ namespace Phantom
 
         public bool DisplayDialog(string s)
         {
+            if (DialogCounter == 6)
+            {
+                DialogCounter = DialogCounter + Choice.expose;
+            }
+
+
+            //for the choice section
             CurrentDialog = Dialogue.Dialogues[DialogCounter];
 
             if (LineIndex < CurrentDialog.Length) //check if theres still lines in the current dialogue scene
@@ -70,12 +80,32 @@ namespace Phantom
             }
 
             else //when dialog scene is finished - reset dialog box (we reuse it a lot, best not to delete)
-            {
-                CurrentLabel.Text = "";
-                TickIndex = 0;
-                LineIndex = 0;
-                DialogCounter++;
-                return true;
+            {  
+
+                if (DialogCounter == 6)
+                {
+                    Choice.SpawnChoiceButtons();
+                    Choice.clicked = false;
+                    CurrentLabel.Text = "";
+                    TickIndex = 0;
+                    LineIndex = 0;
+                    return false;
+
+                }
+
+                else if (DialogCounter == 7 || DialogCounter == 8 || DialogCounter == 9)
+                {
+                    Transition.END_GAME = true;
+                    return true;
+                }
+                else
+                {    
+                    DialogCounter++;
+                    CurrentLabel.Text = "";
+                    TickIndex = 0;
+                    LineIndex = 0;
+                    return true;
+                }
             }
         }
 
@@ -85,8 +115,7 @@ namespace Phantom
             if (TickIndex == 0)
             {
                 sb.Append(encrypted); //we put the old string in the sb so we can change exact positions of the letters
-            }
-            
+            }      
 
             if (TickIndex < encrypted.Length)
             {
@@ -98,7 +127,6 @@ namespace Phantom
             }
             else // when done
             {
-             //   t.Stop(); // stop timer cause string is done
                 return true;
             }
         }

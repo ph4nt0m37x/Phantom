@@ -121,5 +121,8 @@
   <ItemGroup>
     <None Include="images\cipher.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\failApoc.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

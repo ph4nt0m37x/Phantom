@@ -31,8 +31,6 @@ namespace Phantom
 
         public Encryption Encryption;
 
-        public Choice Choice;
-
         public static bool END_GAME;
 
 
@@ -45,8 +43,8 @@ namespace Phantom
             Properties.Resources.postCipher, //3
             Properties.Resources.serverRoom, //4
             Properties.Resources.encrypt, //5
-            Properties.Resources.postEncryption //6
-          
+            Properties.Resources.postEncryption, //6
+            Properties.Resources.failApoc
         };
 
 
@@ -69,17 +67,14 @@ namespace Phantom
 
             Keypad = new Keypad(dialogTimer, "0109");
             Encryption = new Encryption(dialogTimer);
-            Choice = new Choice("Expose NeuroSync", "Side with Specter", dialogTimer);
         }
 
         public bool Fade(bool isDone)
         {
 
-
-
                 this.isDone = isDone; 
 
-                if (sceneCount == 0 ||sceneCount == 1 || sceneCount > 8 && DialogCounter != 3)
+                if (sceneCount == 0 ||sceneCount == 1 || FAIL && sceneCount > 8 && DialogCounter != 3 || !FAIL && sceneCount == 7 && DialogCounter != 3)
                 {
                     hasDialog = true;
                     CurrentScene.CurrentDialog = Dialogue.TransitionLines[DialogCounter];
@@ -122,42 +117,44 @@ namespace Phantom
                         Phantom.ActiveForm.Close();
                     }
 
-                    else if (sceneCount < Images.Length)
+                    else if (sceneCount < Images.Length-1)
                     {
                         if (sceneCount == 2) //keypad minigame starts
                         {
-                            Keypad.spawnAllButtons();
-                            
+                            Keypad.spawnAllButtons();                          
                         }
 
-                        else if (sceneCount == 3)
+                        if (sceneCount > 2)
                         {
                             Keypad.DeleteButtons();
-                            
                         }
 
-                        else if (sceneCount == 5) // encryption minigame starts
+                        if (sceneCount == 5) // encryption minigame starts
                         {
                             Encryption.CreateGame();
                             
                         }
-                        else if (sceneCount == 6) // choice scene appears
+                        if (sceneCount > 5) // choice scene appears
                         {
                             Encryption.DeleteLabel();
-                            //choice here
-
-                            Choice.SpawnChoiceButtons();
 
                         }
 
                         Phantom.ActiveForm.BackgroundImage = Images[sceneCount];
                   
                      }
+
                     else
                     {
-                        Phantom.ActiveForm.BackgroundImage = null;
-                        Keypad.DeleteButtons();
-                        Encryption.DeleteLabel();
+                        if (FAIL && sceneCount == 8)
+                        {
+                            Phantom.ActiveForm.BackgroundImage = Images[7];
+                        }
+                        else
+                        {
+                            Phantom.ActiveForm.BackgroundImage = null;
+                        }
+
 
                     }
 

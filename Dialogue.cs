@@ -78,7 +78,7 @@ namespace Phantom
             new string[] // 5 - allowing the player to choose to resume after they've read the file
 
             {
-                "Click / Press SPACE to continue"
+                "Click here / Press SPACE to continue."
             },
 
             new string [] // 6 - post-encryption dialogue
@@ -98,13 +98,14 @@ namespace Phantom
                 "But now - the truth is staring you in the face.",
                 "The choice is in your hands."
             },
-            new string[] // 7 - blank in between (dont ask we suffered)
+        /*    new string[] // 7 - blank in between (dont ask we suffered)
             {
 
-            },
+            },*/
 
-            new string[] // 8 - expose
+            new string[] // 7 - expose
             {
+                "",
                 "Nix: I’m sorry, Apoc.",
                 "ap0c: NIX, DON’T ---",
                 "Nix: I have to prioritize what I believe in.",
@@ -112,16 +113,16 @@ namespace Phantom
                 "True change demands sacrifice. The question isn’t whether you can pay the price, but whether you’re willing to."
             },
 
-             new string[] // 9 - be selfish (live) :(
+             new string[] // 8 - be selfish (live) :(
             {
                 "Nix: I’ve taken the blueprints.",
                 "ap0c: Good. We stick to the plan. No heroics.",
                 "Nix: It just.. feels wrong.",
-                "ap0c: This is bigger than us.  One data leak will not cost NeuroSync more than a few lawyers.",
+                "ap0c: This is bigger than us. One data leak will not cost NeuroSync more than a few lawyers.",
                 "In this world, the price of seeing everything is too high. Sometimes, you have to choose to see nothing."
             },
 
-            new string[] //10 last, fail (case default)
+            new string[] //9 last, fail (case default)
             {
             "Nix: --Shit!",
             "ap0c: Nix? You there?",
@@ -160,9 +161,9 @@ namespace Phantom
             "If you’re reading this, you’ve either received the confidential security key from me or taken it by force. " +
             "Regardless of how you got it, you need to read carefully. " +
             "Do not turn a blind eye to what’s happening at NeuroSync.\r\n" +
-            "Throughout my time here, I’ve compiled irrefutable evidence—evidence of illegal human experimentation. " +
+            "Throughout my time here, I’ve compiled irrefutable evidence of illegal human experimentation. " +
             "Hundreds of victims, unaware of their fate, have suffered in the name of \"progress.\"\r\n" +
-            "This data must be released to the public. NeuroSync will not stop—they are relentless, driven by greed and the pursuit of experimental implants that line their investors’ pockets.\r\n" +
+            "This data must be released to the public. NeuroSync will not stop — they are relentless, driven by greed and the pursuit of experimental implants that line their investors’ pockets.\r\n" +
             "I have a family. You understand my position. Do the right thing."
         };
 
@@ -172,9 +173,9 @@ namespace Phantom
             "Ed mfo’vs vszaegq iweu, mfo’js seiwsv vscsejsa iws cfgdeasgiezr uscoveim tsm dvfh hs fv iztsg ei xm dfvcs. " +
             "Vsqzvarsuu fd wfk mfo qfi ei, mfo gssa if vsza czvsdorrm. " +
             "Af gfi iovg z xrega sms if kwzi’u wznnsgegq zi GsovfUmgc.\r\n" +
-            "Iwvfoqwfoi hm iehs wsvs, E’js cfhnersa evvsdoizxrs sjeasgcs—sjeasgcs fd errsqzr wohzg slnsvehsgiziefg. " +
+            "Iwvfoqwfoi hm iehs wsvs, E’js cfhnersa evvsdoizxrs sjeasgcs fd errsqzr wohzg slnsvehsgiziefg. " +
             "Wogavsau fd jeciehu, ogzkzvs fd iwsev dzis, wzjs uoddsvsa eg iws gzhs fd \"nvfqvsuu.\"\r\n" +
-            "Iweu aziz houi xs vsrszusa if iws noxrec. GsovfUmgc kerr gfi uifn—iwsm zvs vsrsgirsuu, avejsg xm qvssa zga iws novuoei fd slnsvehsgizr ehnrzgiu iwzi regs iwsev egjsuifvu’ nfctsiu.\r\n" +
+            "Iweu aziz houi xs vsrszusa if iws noxrec. GsovfUmgc kerr gfi uifn — iwsm zvs vsrsgirsuu, avejsg xm qvssa zga iws novuoei fd slnsvehsgizr ehnrzgiu iwzi regs iwsev egjsuifvu’ nfctsiu.\r\n" +
             "E wzjs z dzherm. Mfo ogasvuizga hm nfueiefg. Af iws veqwi iwegq."
         };
 

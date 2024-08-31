@@ -28,8 +28,8 @@ namespace Phantom
 
         public Scene EncryptMinigame;
 
-        String A = "A: a b c d e f g h i j k l m n o p q r s t u v w x y z";
         String C = "C: z x c a s d q w e y t r h g f n b v u i o j k l m p";
+        String A = "A: a b c d e f g h i j k l m n o p q r s t u v w x y z";
 
         public Encryption(Timer t)
         {
@@ -49,8 +49,8 @@ namespace Phantom
         {
             // main encrypt text
             Encrypted.Enabled = true;
-            Encrypted.Font = new Font("Unispace", 11);
-            Encrypted.Size = new System.Drawing.Size(650, 250);
+            Encrypted.Font = new Font("Unispace", 12);
+            Encrypted.Size = new System.Drawing.Size(650, 300);
             Encrypted.Location = new Point(120, 70);
             Encrypted.BackColor = Color.Transparent;
             Encrypted.ForeColor = Color.White;
@@ -66,7 +66,7 @@ namespace Phantom
             Alphabet.Location = new Point(120, 330);
             Alphabet.BackColor = Color.Transparent;
             Alphabet.ForeColor = Color.White;
-            Alphabet.Text = A;
+            Alphabet.Text = C;
             Phantom.ActiveForm.Controls.Add(Alphabet);
             Alphabet.BringToFront();
 
@@ -78,7 +78,7 @@ namespace Phantom
             Cipher.Location = new Point(120, 360);
             Cipher.BackColor = Color.Transparent;
             Cipher.ForeColor = Color.White;
-            Cipher.Text = C;
+            Cipher.Text = A;
             Phantom.ActiveForm.Controls.Add(Cipher);
             Cipher.BringToFront();
 
@@ -90,7 +90,7 @@ namespace Phantom
             Hint.Location = new Point(400, 400);
             Hint.BackColor = Color.Transparent;
             Hint.ForeColor = Color.LightGray;
-            Hint.Text = "(word to decrypt: nvfqvsuu)";
+            Hint.Text = "(decrypt word: nvfqvsuu)";
             Phantom.ActiveForm.Controls.Add(Hint);
             Hint.BringToFront();
 
@@ -121,6 +121,7 @@ namespace Phantom
             Continue.Text = ">>";
             Phantom.ActiveForm.Controls.Add(Continue);
             Continue.Click += new EventHandler(Continue_Click);
+            Continue.TabStop = false;
             Continue.BringToFront();
         }
 
@@ -133,16 +134,17 @@ namespace Phantom
             if (TextBox.Text.ToLower() == "progress") //if the keyword is correct
             {
                 TextBox.Enabled = false;
-                Continue.Enabled = false;
                 DialogTimer.Start();
             }
 
             else //if you fail, consequences
             {
-                Transition.sceneCount = 10;
-                Transition.FAIL = true; 
+                Transition.sceneCount = 7;
+                Transition.FAIL = true;
+                Encrypted.Dispose();
                 TransitionTimer.Start(); //starting the timer back up
             }
+
             Alphabet.Dispose();
             Cipher.Dispose();
             TextBox.Dispose();
