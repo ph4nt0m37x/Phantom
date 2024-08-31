@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 
 
 namespace Phantom
@@ -25,7 +27,6 @@ namespace Phantom
 
         public bool Done;
 
-
         public Scene EncryptMinigame;
 
         String C = "C: z x c a s d q w e y t r h g f n b v u i o j k l m p";
@@ -47,9 +48,16 @@ namespace Phantom
 
         public void CreateGame()
         {
+
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont;
+            customFont = new Font(privateFonts.Families[0], 12);
+
             // main encrypt text
             Encrypted.Enabled = true;
-            Encrypted.Font = new Font("Unispace", 12);
+            Encrypted.Font = customFont;   
             Encrypted.Size = new System.Drawing.Size(650, 300);
             Encrypted.Location = new Point(120, 70);
             Encrypted.BackColor = Color.Transparent;
@@ -61,7 +69,7 @@ namespace Phantom
             // cipher 1
 
             Alphabet.Enabled = true;
-            Alphabet.Font = new Font("Unispace", 11);
+            Alphabet.Font = customFont;
             Alphabet.Size = new System.Drawing.Size(575, 30);
             Alphabet.Location = new Point(120, 330);
             Alphabet.BackColor = Color.Transparent;
@@ -73,7 +81,7 @@ namespace Phantom
             // cipher 2
 
             Cipher.Enabled = true;
-            Cipher.Font = new Font("Unispace", 11);
+            Cipher.Font = customFont;
             Cipher.Size = new System.Drawing.Size(575, 30);
             Cipher.Location = new Point(120, 360);
             Cipher.BackColor = Color.Transparent;
@@ -85,7 +93,7 @@ namespace Phantom
             //hint 
 
             Hint.Enabled = true;
-            Hint.Font = new Font("Unispace", 11);
+            Hint.Font = customFont;
             Hint.Size = new System.Drawing.Size(575, 30);
             Hint.Location = new Point(400, 400);
             Hint.BackColor = Color.Transparent;
@@ -97,7 +105,7 @@ namespace Phantom
             // text box
 
             TextBox.Enabled = true;
-            TextBox.Font = new Font("Unispace", 11);
+            TextBox.Font = customFont;
             TextBox.Size = new System.Drawing.Size(150, 50);
             TextBox.Location = new Point(120, 400);
             TextBox.BackColor = Color.DarkCyan;
@@ -108,7 +116,7 @@ namespace Phantom
             // button
 
             Continue.Enabled = true;
-            Continue.Font = new Font("Unispace", 11);
+            Continue.Font = customFont;
             Continue.Size = new System.Drawing.Size(50, 28);
             Continue.Location = new Point(300, 397);
             Continue.BackColor = Color.Transparent;
@@ -123,6 +131,8 @@ namespace Phantom
             Continue.Click += new EventHandler(Continue_Click);
             Continue.TabStop = false;
             Continue.BringToFront();
+
+
         }
 
 
@@ -158,7 +168,7 @@ namespace Phantom
                 EncryptMinigame.TickIndex++;
             }
             else //stop once it finishes
-            {           
+            {
                 DialogTimer.Stop();
                 TransitionTimer.Start();
             }

@@ -82,6 +82,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Unispace Bd.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -111,9 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stealth-music-background.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\WRONG.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\encrypt.png" />

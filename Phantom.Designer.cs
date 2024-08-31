@@ -215,6 +215,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phantom";
+            this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Phantom_KeyDown);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Phantom_MouseClick);
             this.ResumeLayout(false);

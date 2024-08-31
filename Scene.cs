@@ -58,7 +58,6 @@ namespace Phantom
                 DialogCounter = DialogCounter + Choice.expose;
             }
 
-
             //for the choice section
             CurrentDialog = Dialogue.Dialogues[DialogCounter];
 

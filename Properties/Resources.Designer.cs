@@ -160,11 +160,12 @@ namespace Phantom.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream WRONG {
+        internal static byte[] Unispace_Bd {
             get {
-                return ResourceManager.GetStream("WRONG", resourceCulture);
+                object obj = ResourceManager.GetObject("Unispace_Bd", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

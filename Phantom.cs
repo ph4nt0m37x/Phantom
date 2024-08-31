@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Media;
 using System.Windows.Forms; 
 
@@ -40,6 +42,23 @@ namespace Phantom
             menuTimer.Start(); //start the menu timer for the dialog to write out
 
 
+            //font issues fixing
+
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont = new Font(privateFonts.Families[0], 14);
+
+
+            foreach (Control control in this.Controls)
+            {
+                control.Font = customFont;
+            }
+
+            Font custom = new Font(privateFonts.Families[0], 50);
+
+            ButtonStart.Font = custom;
+          
 
         }
 
@@ -126,7 +145,7 @@ namespace Phantom
                     validClick = true;
                     dialogueTimer.Start();
             }
-            else
+            else //if the transition isn't done, continue it
             {
                 lblDialog.Hide();
                 Transition.TickCount++; //count the ticks for transition scene

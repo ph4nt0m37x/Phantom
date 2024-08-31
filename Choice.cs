@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -32,13 +34,19 @@ namespace Phantom
         }
         public void SpawnChoiceButtons() //func to spawn both buttons
         {
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont;
+            customFont = new Font(privateFonts.Families[0], 20);
+
             optionA.Location = new Point(50, 355);
             optionA.Size = new Size(338, 68);
             optionA.ForeColor = Color.White;
             optionA.BackColor = Color.Transparent;
             optionA.FlatStyle = FlatStyle.Flat;
             optionA.FlatAppearance.BorderSize = 2;
-            optionA.Font = new Font("Unispace", 20);
+            optionA.Font = customFont;
             optionA.Text = textA;
             optionA.Click += new EventHandler(Button_Click);
             optionA.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
@@ -51,7 +59,7 @@ namespace Phantom
             optionB.BackColor = Color.Transparent;
             optionB.FlatStyle = FlatStyle.Flat;
             optionB.FlatAppearance.BorderSize = 2;
-            optionB.Font = new Font("Unispace", 20);
+            optionB.Font = customFont;
             optionB.Text = textB;
             optionB.Click += new EventHandler(Button_Click);
             optionB.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
@@ -60,6 +68,9 @@ namespace Phantom
             optionA.BringToFront();
             optionB.BringToFront();
             spawned = true;
+
+            
+
 
         }
         private void Button_Click(object sender, EventArgs e)//func for when buttons are placed (works for both)
@@ -87,6 +98,17 @@ namespace Phantom
         {
             optionA.Dispose();
             optionB.Dispose();
+
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont;
+            customFont = new Font(privateFonts.Families[0], 14);
+            foreach (Control control in Phantom.ActiveForm.Controls)
+            {
+                control.Font = customFont;
+            }
+
         }
     }
 }

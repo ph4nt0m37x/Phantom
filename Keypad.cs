@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -19,6 +21,8 @@ namespace Phantom
         Label Code = new Label();
 
         int counter = 0;
+
+     //   Font customFont;
 
         public string[] ButtonText = //text for the buttons
         {
@@ -56,7 +60,8 @@ namespace Phantom
             this.Answer = answer;
             this.T = t;
 
-            
+
+
 
 
         }
@@ -78,27 +83,40 @@ namespace Phantom
             Button.FlatAppearance.BorderSize = 2;
             Button.Click += new EventHandler(Button_Click);
             Button.TabStop = false;
-            Button.Font = new Font("Unispace", 20);
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont;
+            customFont = new Font(privateFonts.Families[0], 20);
+            Button.Font = customFont;
             Phantom.ActiveForm.Controls.Add(Button);
+
             return Button;
 
+
         }
-        public void SpawnAllButtons() //func to spawn all buttons automagically
+        public void SpawnAllButtons() //func to spawn all buttons automatically
         {
             for (int i = 0; i < 12; i++)
             {
                 Buttons[i] = spawnButton(ButtonText[i], Point[i]);
                 Buttons[i].BringToFront();
             }
+
+            PrivateFontCollection privateFonts = new PrivateFontCollection();
+            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+            privateFonts.AddFontFile(fontPath);
+            Font customFont;
+            customFont = new Font(privateFonts.Families[0], 20);
+            
             Code.Enabled = true;
-            Code.Font = new Font("Unispace", 25);
+            Code.Font = customFont;
             Code.Size = new System.Drawing.Size(250, 50);
             Code.Location = new Point(90, 40);
             Code.BackColor = Color.Transparent;
             Code.ForeColor = Color.White;
             Code.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             Code.BorderStyle = BorderStyle.FixedSingle;
-
             Phantom.ActiveForm.Controls.Add(Code);
         }
 
@@ -128,6 +146,7 @@ namespace Phantom
                     {
                         if (Input == Answer) //if correct stop minigame (gets rid of everything and starts the timer again)
                         {
+
                             T.Start();
                             
                         }
@@ -150,7 +169,7 @@ namespace Phantom
                             }
                         }
 
-                    } // failure (not finished)
+                    } 
 
                 }
                 else // if not special input add input to input field 
