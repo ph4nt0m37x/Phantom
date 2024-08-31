@@ -149,7 +149,28 @@ public void SpawnAllButtons() //func to spawn all buttons automatically
 При мини-играта за декриптирање на пораката, откако ќе се внесе точната шифра, на екранот енкриптираниот текст се декриптира.
 Тоа се случува со помош на следната функција, која се повикува на секој tick на тајмер.
 
-![image](https://github.com/user-attachments/assets/233b2991-4d11-4cc6-baeb-ea99d2026df1)
+```csharp
+public bool Decrypt(string decrypted, string encrypted)
+{ 
+    if (TickIndex == 0)
+    {
+        sb.Append(encrypted); //we put the old string in the sb so we can change exact positions of the letters
+    }      
+
+    if (TickIndex < encrypted.Length)
+    {
+        char c = decrypted.ToCharArray()[TickIndex];
+        sb[TickIndex] = c;
+
+        CurrentLabel.Text = sb.ToString(); //replace the letter in the old string with the one in the new
+        return false;
+    }
+    else // when done
+    {
+        return true;
+    }
+}
+```
 
 Користејќи StringBuilder, првично ја залепуваме енкриптираната порака. Потоа, користејќи ја вредноста на tick-oт ја селектираме позицијата на буквита која треба да биде заменета со таа во дешифрираната порака се додека не ја дешифрираме целата.
 
