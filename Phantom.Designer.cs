@@ -124,7 +124,7 @@
             this.ButtonStart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.ButtonStart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.ButtonStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonStart.Font = new System.Drawing.Font("Unispace", 50F, System.Drawing.FontStyle.Bold);
+            this.ButtonStart.Font = new System.Drawing.Font("Unispace", 49.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStart.ForeColor = System.Drawing.SystemColors.Control;
             this.ButtonStart.Location = new System.Drawing.Point(399, 281);
             this.ButtonStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

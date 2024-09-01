@@ -148,7 +148,7 @@
   <data name="stealth_music_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stealth-music-background.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Unispace_Bd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Unispace Bd.otf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="UnispaceBd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UnispaceBd.otf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

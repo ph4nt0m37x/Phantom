@@ -162,9 +162,9 @@ namespace Phantom.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Unispace_Bd {
+        internal static byte[] UnispaceBd {
             get {
-                object obj = ResourceManager.GetObject("Unispace_Bd", resourceCulture);
+                object obj = ResourceManager.GetObject("UnispaceBd", resourceCulture);
                 return ((byte[])(obj));
             }
         }
