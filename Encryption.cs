@@ -49,15 +49,15 @@ namespace Phantom
         public void CreateGame()
         {
 
-            PrivateFontCollection privateFonts = new PrivateFontCollection();
-            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
-            privateFonts.AddFontFile(fontPath);
-            Font customFont;
-            customFont = new Font(privateFonts.Families[0], 12);
+            /*  PrivateFontCollection privateFonts = new PrivateFontCollection();
+              string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+              privateFonts.AddFontFile(fontPath); <--- breaks da game :D
+              Font customFont;
+              customFont = new Font(privateFonts.Families[0], 12);*/
 
             // main encrypt text
             Encrypted.Enabled = true;
-            Encrypted.Font = customFont;   
+            Encrypted.Font = new Font("Unispace", 20);
             Encrypted.Size = new System.Drawing.Size(650, 300);
             Encrypted.Location = new Point(120, 70);
             Encrypted.BackColor = Color.Transparent;
@@ -69,7 +69,7 @@ namespace Phantom
             // cipher 1
 
             Alphabet.Enabled = true;
-            Alphabet.Font = customFont;
+            Alphabet.Font = new Font("Unispace", 20);
             Alphabet.Size = new System.Drawing.Size(575, 30);
             Alphabet.Location = new Point(120, 330);
             Alphabet.BackColor = Color.Transparent;
@@ -81,7 +81,7 @@ namespace Phantom
             // cipher 2
 
             Cipher.Enabled = true;
-            Cipher.Font = customFont;
+            Cipher.Font = new Font("Unispace", 20);
             Cipher.Size = new System.Drawing.Size(575, 30);
             Cipher.Location = new Point(120, 360);
             Cipher.BackColor = Color.Transparent;
@@ -93,7 +93,7 @@ namespace Phantom
             //hint 
 
             Hint.Enabled = true;
-            Hint.Font = customFont;
+            Hint.Font = new Font("Unispace", 20);    
             Hint.Size = new System.Drawing.Size(575, 30);
             Hint.Location = new Point(400, 400);
             Hint.BackColor = Color.Transparent;
@@ -105,7 +105,7 @@ namespace Phantom
             // text box
 
             TextBox.Enabled = true;
-            TextBox.Font = customFont;
+            TextBox.Font = new Font("Unispace", 20);
             TextBox.Size = new System.Drawing.Size(150, 50);
             TextBox.Location = new Point(120, 400);
             TextBox.BackColor = Color.DarkCyan;
@@ -116,7 +116,7 @@ namespace Phantom
             // button
 
             Continue.Enabled = true;
-            Continue.Font = customFont;
+            Continue.Font = new Font("Unispace", 20);
             Continue.Size = new System.Drawing.Size(50, 28);
             Continue.Location = new Point(300, 397);
             Continue.BackColor = Color.Transparent;

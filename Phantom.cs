@@ -44,21 +44,10 @@ namespace Phantom
 
             //font issues fixing
 
-            PrivateFontCollection privateFonts = new PrivateFontCollection();
+          /*  PrivateFontCollection privateFonts = new PrivateFontCollection();
             string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
             privateFonts.AddFontFile(fontPath);
-            Font customFont = new Font(privateFonts.Families[0], 14);
-
-
-            foreach (Control control in this.Controls)
-            {
-                control.Font = customFont;
-            }
-
-            Font custom = new Font(privateFonts.Families[0], 50);
-
-            ButtonStart.Font = custom;
-          
+            Font customFont = new Font(privateFonts.Families[0], 14);     <-breaks the game, sometimes :D  */     
 
         }
 
@@ -303,5 +292,10 @@ namespace Phantom
             
         }
 
+        private void Phantom_FontChanged(object sender, EventArgs e)
+        {
+
+
+        }
     }
 }

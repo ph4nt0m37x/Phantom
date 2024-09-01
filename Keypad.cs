@@ -60,10 +60,6 @@ namespace Phantom
             this.Answer = answer;
             this.T = t;
 
-
-
-
-
         }
 
         public Button spawnButton(string s, Point p) //func to spawn a single button with text s at point p
@@ -83,12 +79,15 @@ namespace Phantom
             Button.FlatAppearance.BorderSize = 2;
             Button.Click += new EventHandler(Button_Click);
             Button.TabStop = false;
+            /* breaks the game, sometimes :D
             PrivateFontCollection privateFonts = new PrivateFontCollection();
             string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
             privateFonts.AddFontFile(fontPath);
             Font customFont;
             customFont = new Font(privateFonts.Families[0], 20);
             Button.Font = customFont;
+            */ 
+            Button.Font = new Font("Unispace", 20);
             Phantom.ActiveForm.Controls.Add(Button);
 
             return Button;
@@ -102,15 +101,17 @@ namespace Phantom
                 Buttons[i] = spawnButton(ButtonText[i], Point[i]);
                 Buttons[i].BringToFront();
             }
+            /* breaks the game, sometimes :D
+                       PrivateFontCollection privateFonts = new PrivateFontCollection();
+                       string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
+                       privateFonts.AddFontFile(fontPath);
+                       Font customFont;
+                       customFont = new Font(privateFonts.Families[0], 20);
+                       Button.Font = customFont;
+                       */
 
-            PrivateFontCollection privateFonts = new PrivateFontCollection();
-            string fontPath = Path.Combine("Resources", "Unispace Bd.otf");
-            privateFonts.AddFontFile(fontPath);
-            Font customFont;
-            customFont = new Font(privateFonts.Families[0], 20);
-            
             Code.Enabled = true;
-            Code.Font = customFont;
+            Code.Font = new Font("Unispace", 20);
             Code.Size = new System.Drawing.Size(250, 50);
             Code.Location = new Point(90, 40);
             Code.BackColor = Color.Transparent;

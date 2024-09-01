@@ -141,7 +141,7 @@
             // lblDialog
             // 
             this.lblDialog.BackColor = System.Drawing.Color.Transparent;
-            this.lblDialog.Font = new System.Drawing.Font("Unispace", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDialog.Font = new System.Drawing.Font("Unispace", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDialog.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblDialog.Location = new System.Drawing.Point(61, 409);
             this.lblDialog.Name = "lblDialog";
@@ -216,6 +216,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Phantom";
             this.TopMost = true;
+            this.FontChanged += new System.EventHandler(this.Phantom_FontChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Phantom_KeyDown);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Phantom_MouseClick);
             this.ResumeLayout(false);
